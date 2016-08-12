@@ -2,13 +2,13 @@ package io.intrepid.skeleton.screens.example2;
 
 import android.support.annotation.NonNull;
 
-import io.intrepid.skeleton.base.BasePresenterImpl;
+import io.intrepid.skeleton.base.BasePresenter;
 import io.intrepid.skeleton.base.PresenterConfiguration;
 import io.intrepid.skeleton.utils.RxUtils;
 import rx.Observable;
 import rx.Subscription;
 
-public class Example2Presenter extends BasePresenterImpl<Example2Contract.View> implements Example2Contract.Presenter {
+public class Example2Presenter extends BasePresenter<Example2Contract.View> implements Example2Contract.Presenter {
 
     public Example2Presenter(@NonNull Example2Contract.View view,
                              @NonNull PresenterConfiguration configuration) {

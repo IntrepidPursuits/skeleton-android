@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.intrepid.skeleton.SkeletonApplication;
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fragment implements BaseContract.View {
 
     protected T presenter;
     private Unbinder unbinder;
