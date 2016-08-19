@@ -46,13 +46,13 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
     }
 
     @Override
-    public void unbindView() {
+    public final void unbindView() {
         subscriptions.clear();
         this.view = null;
         onViewUnbinded();
     }
 
-    private void onViewUnbinded() {
+    protected void onViewUnbinded() {
 
     }
 

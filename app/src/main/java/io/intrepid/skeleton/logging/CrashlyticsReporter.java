@@ -12,10 +12,11 @@ public class CrashlyticsReporter implements CrashReporter {
 
     private static CrashlyticsReporter instance;
 
+    @SuppressWarnings("PointlessBooleanExpression")
     public static void init(Context context) {
         CrashlyticsCore core = new CrashlyticsCore
                 .Builder()
-                .disabled(!BuildConfig.LOG_CRASH)
+                .disabled(!BuildConfig.REPORT_CRASH)
                 .build();
         Crashlytics crashlytics = new Crashlytics
                 .Builder()

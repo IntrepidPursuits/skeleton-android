@@ -49,18 +49,18 @@ android {
         debug {
             applicationIdSuffix ".debug"
             buildConfigField "boolean", "LOG_CONSOLE", "true"
-            buildConfigField "boolean", "LOG_CRASH", "false"
+            buildConfigField "boolean", "REPORT_CRASH", "false"
         }
 
         qa {
             initWith(buildTypes.debug)
             buildConfigField "boolean", "LOG_CONSOLE", "true"
-            buildConfigField "boolean", "LOG_CRASH", "true"
+            buildConfigField "boolean", "REPORT_CRASH", "true"
         }
 
         release {
             buildConfigField "boolean", "LOG_CONSOLE", "false"
-            buildConfigField "boolean", "LOG_CRASH", "true"
+            buildConfigField "boolean", "REPORT_CRASH", "true"
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
