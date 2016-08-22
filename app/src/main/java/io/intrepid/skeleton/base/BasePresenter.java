@@ -22,6 +22,8 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
     @NonNull
     protected final RestApi restApi;
 
+    private boolean isViewBound = false;
+
     public BasePresenter(@NonNull T view, @NonNull PresenterConfiguration configuration) {
         this.view = view;
         this.ioScheduler = configuration.getIoScheduler();
@@ -36,12 +38,16 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
     }
 
     @Override
-    public final void bindView(T view) {
+    public final void bindView(@NonNull T view) {
         this.view = view;
-        onViewBinded();
+
+        if (!isViewBound) {
+            onViewBound();
+            isViewBound = true;
+        }
     }
 
-    protected void onViewBinded() {
+    protected void onViewBound() {
 
     }
 
@@ -49,10 +55,14 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
     public final void unbindView() {
         subscriptions.clear();
         this.view = null;
-        onViewUnbinded();
+
+        if (isViewBound) {
+            onViewUnbound();
+            isViewBound = false;
+        }
     }
 
-    protected void onViewUnbinded() {
+    protected void onViewUnbound() {
 
     }
 

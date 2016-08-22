@@ -54,6 +54,7 @@ android {
 
         qa {
             initWith(buildTypes.debug)
+            applicationIdSuffix ".qa"
             buildConfigField "boolean", "LOG_CONSOLE", "true"
             buildConfigField "boolean", "REPORT_CRASH", "true"
         }
@@ -82,7 +83,7 @@ dependencies {
     }
 
     // Support libraries
-    def supportVersion = "24.1.1";
+    def supportVersion = "24.2.0";
     compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
@@ -93,7 +94,7 @@ dependencies {
     compile "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
-    compile "io.reactivex:rxjava:1.1.6"
+    compile "io.reactivex:rxjava:1.1.9"
     compile "io.reactivex:rxandroid:1.2.1"
 
     // Jake Wharton/Square
@@ -109,7 +110,7 @@ dependencies {
     def butterKnifeVersion = "8.2.1"
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
-    compile 'com.jakewharton.timber:timber:4.1.2'
+    compile 'com.jakewharton.timber:timber:4.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     // Other

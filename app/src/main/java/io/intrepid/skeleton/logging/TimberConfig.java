@@ -6,7 +6,7 @@ import android.util.Log;
 import io.intrepid.skeleton.BuildConfig;
 import timber.log.Timber;
 
-public class TimberLogger {
+public class TimberConfig {
     @SuppressWarnings({ "ConstantConditions", "UnusedAssignment" })
     public static void init(@NonNull final CrashReporter crashReporter) {
         Timber.Tree tree = null;

@@ -33,8 +33,7 @@ else
     exit
 fi
 
-# TODO: use the github link
-git clone ~/AndroidStudioProjects/Skeleton/ $downloadDirectory/$newApplicationCapitalizedName
+git clone https://github.com/IntrepidPursuits/AndroidSkeleton.git $downloadDirectory/$newApplicationCapitalizedName
 
 cd $downloadDirectory/$newApplicationCapitalizedName
 rm necromancer.sh

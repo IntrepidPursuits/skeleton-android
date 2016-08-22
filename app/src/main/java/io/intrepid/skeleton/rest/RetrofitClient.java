@@ -4,6 +4,7 @@ import android.support.annotation.VisibleForTesting;
 
 import java.util.concurrent.TimeUnit;
 
+import io.intrepid.skeleton.BuildConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -34,8 +35,10 @@ public class RetrofitClient {
 
     private static RestApi createRestApi(String baseUrl) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        if (BuildConfig.LOG_CONSOLE) {
+            builder.addInterceptor(new HttpLoggingInterceptor(message -> Timber.v(message)).setLevel(HttpLoggingInterceptor.Level.BODY));
+        }
         OkHttpClient httpClient = builder
-                .addInterceptor(new HttpLoggingInterceptor(message -> Timber.v(message)).setLevel(HttpLoggingInterceptor.Level.BODY))
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
                 .build();
 

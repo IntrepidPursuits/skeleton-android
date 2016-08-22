@@ -6,7 +6,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 import io.intrepid.skeleton.base.PresenterConfiguration;
 import io.intrepid.skeleton.logging.CrashlyticsReporter;
-import io.intrepid.skeleton.logging.TimberLogger;
+import io.intrepid.skeleton.logging.TimberConfig;
 import io.intrepid.skeleton.rest.RetrofitClient;
 import io.intrepid.skeleton.settings.SharePreferencesManager;
 import rx.android.schedulers.AndroidSchedulers;
@@ -22,7 +22,7 @@ public class SkeletonApplication extends Application {
 
         CrashlyticsReporter.init(this);
 
-        TimberLogger.init(CrashlyticsReporter.getInstance());
+        TimberConfig.init(CrashlyticsReporter.getInstance());
     }
 
     public PresenterConfiguration getPresenterConfiguration() {
