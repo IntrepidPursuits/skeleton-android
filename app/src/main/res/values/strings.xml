@@ -1,3 +1,10 @@
 <resources>
+    <string name="common_ok">OK</string>
+    <string name="common_yes">Yes</string>
+    <string name="common_no">No</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_remove">Remove</string>
+
     <string name="app_name">Skeleton</string>
 </resources>
