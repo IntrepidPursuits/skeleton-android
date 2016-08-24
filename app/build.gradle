@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'spoon'
+apply from: 'version.gradle'
 // Uncomment the following line after adding fabric.properties file
 //apply plugin: 'io.fabric'
 
@@ -48,13 +49,17 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
+
             buildConfigField "boolean", "LOG_CONSOLE", "true"
             buildConfigField "boolean", "REPORT_CRASH", "false"
         }
 
         qa {
             initWith(buildTypes.debug)
+
             applicationIdSuffix ".qa"
+            versionNameSuffix versionSuffix()
+
             buildConfigField "boolean", "LOG_CONSOLE", "true"
             buildConfigField "boolean", "REPORT_CRASH", "true"
         }

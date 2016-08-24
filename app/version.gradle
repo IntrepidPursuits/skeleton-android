@@ -1,0 +1,25 @@
+ext.gitShortHash = {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+ext.gitHash = {
+    return 'git rev-parse HEAD'.execute().text.trim()
+}
+
+ext.buildNumber = {
+    return System.getenv("BUILD_NUMBER")
+}
+
+ext.versionSuffix = {
+    def buildNumber = buildNumber()
+    if (buildNumber) {
+        return "." + buildNumber
+    }
+
+    def shortHash = gitShortHash()
+    if (shortHash) {
+        return "." + shortHash
+    }
+
+    return ""
+}
