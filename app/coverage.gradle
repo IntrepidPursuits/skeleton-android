@@ -1,0 +1,39 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.7.7.201606060606"
+}
+
+def coverageSourceDirs = files(['src/main/java'])
+def coverageClassDirs = fileTree(
+        dir: "${buildDir}/intermediates/classes/debug",
+        excludes: ['**/R.class',
+                   '**/R$*.class',
+                   '**/BuildConfig.*',
+                   '**/Manifest*.*',
+                   'com/android/**/*.class',
+                   '**/*_ViewBind*' // ButterKnife auto generated classes
+        ]
+)
+
+task unitTestCoverage(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    sourceDirectories = coverageSourceDirs
+    classDirectories = coverageClassDirs
+    executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+
+    doLast {
+        println "You can view the coverage report at:"
+        println "${buildDir}/reports/jacoco/unitTestCoverage/html/index.html"
+    }
+}
+
+task instrumentationTestCoverage(type: JacocoReport, dependsOn: 'spoonDebugAndroidTest') {
+    sourceDirectories = coverageSourceDirs
+    classDirectories = coverageClassDirs
+    executionData = files("${buildDir}/spoon/debug/coverage/merged-coverage.ec")
+
+    doLast {
+        println "You can view the coverage report at:"
+        println "${buildDir}/reports/jacoco/instrumentationTestCoverage/html/index.html"
+    }
+}
