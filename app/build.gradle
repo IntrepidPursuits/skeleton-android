@@ -44,6 +44,7 @@ android {
                 keyAlias getLocalProperty("signing_alias")
                 keyPassword getLocalProperty("signing_key_password")
             }
+            return true
         }
     }
 
