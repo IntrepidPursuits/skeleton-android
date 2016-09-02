@@ -3,22 +3,19 @@ package io.intrepid.skeleton.screens.example1;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
+import io.intrepid.skeleton.testutils.BasePresenterTest;
 import io.intrepid.skeleton.testutils.TestPresenterConfiguration;
 
 import static org.mockito.Mockito.verify;
 
-public class Example1PresenterTest {
+public class Example1PresenterTest extends BasePresenterTest<Example1Presenter> {
 
     @Mock
     Example1Contract.View mockView;
 
-    private Example1Presenter presenter;
-
     @Before
     public void setup() {
-        MockitoAnnotations.initMocks(this);
         presenter = new Example1Presenter(mockView, TestPresenterConfiguration.createTestConfiguration());
     }
 

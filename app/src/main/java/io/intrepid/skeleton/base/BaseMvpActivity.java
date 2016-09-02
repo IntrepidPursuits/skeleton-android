@@ -6,6 +6,11 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+/**
+ * Base class for activities that will have some business logic instead of just hosting a fragment.
+ * If the activity is only going to act as a container for a fragment, use {@link BaseFragmentActivity}
+ * instead
+ */
 public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends BaseActivity implements BaseContract.View {
 
     protected T presenter;

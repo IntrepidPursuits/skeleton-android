@@ -6,6 +6,11 @@ import android.support.v4.app.Fragment;
 
 import io.intrepid.skeleton.R;
 
+/**
+ * Base class for activities whose sole purpose to to host a fragment. Child classes simply need
+ * to override {@link #createFragment(Intent)} and create the appropriate Fragment. If the activity
+ * contains any additional logic, use {@link BaseMvpActivity} instead
+ */
 public abstract class BaseFragmentActivity extends BaseActivity {
     @Override
     protected int getLayoutResourceId() {

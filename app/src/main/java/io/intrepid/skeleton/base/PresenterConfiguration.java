@@ -6,6 +6,9 @@ import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
 import rx.Scheduler;
 
+/**
+ * Wrapper class for common dependencies that all presenters are expected to have
+ */
 public class PresenterConfiguration {
     @NonNull
     protected final Scheduler ioScheduler;

@@ -25,7 +25,7 @@ public class Example2Fragment extends BaseFragment<Example2Contract.Presenter> i
     }
 
     @Override
-    public void showText(String text) {
-        textView.setText(text);
+    public void showIpAddress(String ip) {
+        textView.setText("Your Ip address is " + ip);
     }
 }
