@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackground"
+                android:orientation="vertical"
+                tools:context="io.intrepid.skeleton.screens.gitHubUserRepos.GitHubUserReposFragment">
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"/>
+
+    <Button
+        android:id="@+id/show_repos_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username_input"
+        android:layout_alignParentEnd="true"
+        android:text="@string/git_hub_show_repos_prompt"/>
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/git_hub_avatar_side"
+        android:layout_height="@dimen/git_hub_avatar_side"
+        android:layout_margin="@dimen/default_padding"
+        android:layout_below="@+id/username_input"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/avatar"/>
+</RelativeLayout>

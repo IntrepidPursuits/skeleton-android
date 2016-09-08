@@ -7,4 +7,10 @@
     <string name="common_remove">Remove</string>
 
     <string name="app_name">Skeleton</string>
+
+    <string name="demo_github">GitHub</string>
+
+    <string name="git_hub_show_repos_prompt">Show my repositories</string>
+    <string name="git_hub_repo_created_at">Created on %s</string>
+    <string name="error_msg_get_git_hub_repos_failed">Failure loading repositories</string>
 </resources>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.intrepid.skeleton"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="io.intrepid.skeleton"
     >
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".SkeletonApplication"
@@ -12,14 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".screens.example1.Example1Activity">
+        <activity android:name=".screens.demoSelection.DemoSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".screens.example2.Example2Activity"/>
+        <activity android:name=".screens.gitHubUserRepos.GitHubUserReposActivity" />
     </application>
 
 </manifest>

@@ -2,7 +2,7 @@ package io.intrepid.skeleton.base;
 
 import android.support.annotation.NonNull;
 
-import io.intrepid.skeleton.rest.RestApi;
+import io.intrepid.skeleton.SkeletonApplication;
 import io.intrepid.skeleton.settings.UserSettings;
 import rx.Observable;
 import rx.Scheduler;
@@ -19,8 +19,6 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
     protected final Scheduler uiScheduler;
     @NonNull
     protected final UserSettings userSettings;
-    @NonNull
-    protected final RestApi restApi;
 
     private boolean isViewBound = false;
 
@@ -29,7 +27,6 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
         this.ioScheduler = configuration.getIoScheduler();
         this.uiScheduler = configuration.getUiScheduler();
         this.userSettings = configuration.getUserSettings();
-        this.restApi = configuration.getRestApi();
     }
 
     @Override
@@ -54,6 +51,7 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
     @Override
     public final void unbindView() {
         subscriptions.clear();
+        SkeletonApplication.bus.unregister(this);
         this.view = null;
 
         if (isViewBound) {

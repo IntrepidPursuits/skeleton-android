@@ -3,7 +3,7 @@ package io.intrepid.skeleton.rest;
 import io.intrepid.skeleton.rules.MockServerRule;
 
 public class TestRestClient {
-    public static RestApi getRestApi(MockServerRule mockServer) {
-        return RetrofitClient.getTestApi(mockServer.getServerUrl());
+    public static GitHubApi getGitHubApi(MockServerRule mockServer) {
+        return GitHubRetrofitClient.getTestApi(mockServer.getServerUrl());
     }
 }

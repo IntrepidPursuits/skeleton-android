@@ -3,7 +3,6 @@ package io.intrepid.skeleton;
 import android.os.AsyncTask;
 
 import io.intrepid.skeleton.base.PresenterConfiguration;
-import io.intrepid.skeleton.rest.RetrofitClient;
 import io.intrepid.skeleton.settings.SharePreferencesManager;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -16,8 +15,7 @@ public class InstrumentationTestApplication extends SkeletonApplication {
                 Schedulers.from(AsyncTask.THREAD_POOL_EXECUTOR),
                 AndroidSchedulers.mainThread(),
                 // these can be replaced with mock version
-                SharePreferencesManager.getInstance(this),
-                RetrofitClient.getApi()
+                SharePreferencesManager.getInstance(this)
         );
     }
 }

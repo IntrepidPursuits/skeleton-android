@@ -123,6 +123,7 @@ dependencies {
 
     // Other
     compile "io.intrepid.commonutils:commonutils:0.1.0"
+    compile 'org.greenrobot:eventbus:3.0.0'
 
     // LeakCanary
     def leakCanaryVersion = "1.4-beta2"
