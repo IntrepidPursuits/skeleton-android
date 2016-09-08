@@ -11,9 +11,9 @@ import rx.Scheduler;
  */
 public class PresenterConfiguration {
     @NonNull
-    protected final Scheduler ioScheduler;
+    private final Scheduler ioScheduler;
     @NonNull
-    protected final Scheduler uiScheduler;
+    private final Scheduler uiScheduler;
     @NonNull
     private final UserSettings userSettings;
     @NonNull

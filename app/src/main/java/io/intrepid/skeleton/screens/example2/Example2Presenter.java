@@ -18,7 +18,18 @@ class Example2Presenter extends BasePresenter<Example2Contract.View> implements 
     public void onViewCreated() {
         Subscription subscription = restApi.getMyIp()
                 .compose(subscribeOnIoObserveOnUi())
-                .subscribe(ipModel -> view.showIpAddress(ipModel.ip), RxUtils.logError());
+                .subscribe(ipModel -> {
+                    String ip = ipModel.ip;
+                    view.showCurrentIpAddress(ip);
+                    userSettings.setLastIp(ip);
+                }, RxUtils.logError());
         subscriptions.add(subscription);
+
+        String lastIp = userSettings.getLastIp();
+        if (lastIp == null) {
+            view.hidePreviousIpAddress();
+        } else {
+            view.showPreviousIpAddress(lastIp);
+        }
     }
 }

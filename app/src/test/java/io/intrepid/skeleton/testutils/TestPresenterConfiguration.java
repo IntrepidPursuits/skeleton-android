@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 
 import org.mockito.Mockito;
 
-import java.util.concurrent.TimeUnit;
-
 import io.intrepid.skeleton.base.PresenterConfiguration;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
@@ -42,8 +40,8 @@ public class TestPresenterConfiguration extends PresenterConfiguration {
     /**
      * Helper method for triggering pending Rx events
      */
-    public void advanceRxSchedulers(long delayTime, TimeUnit unit) {
-        getIoScheduler().advanceTimeBy(delayTime, unit);
+    public void triggerRxSchedulers() {
+        getIoScheduler().triggerActions();
         getUiScheduler().triggerActions();
     }
 }
