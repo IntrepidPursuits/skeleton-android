@@ -3,6 +3,7 @@ apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'spoon'
 apply from: 'version.gradle'
+apply from: 'coverage.gradle'
 // Uncomment the following line after adding fabric.properties file
 //apply plugin: 'io.fabric'
 
@@ -52,6 +53,8 @@ android {
 
             buildConfigField "boolean", "LOG_CONSOLE", "true"
             buildConfigField "boolean", "REPORT_CRASH", "false"
+
+            testCoverageEnabled = true
         }
 
         qa {
@@ -112,7 +115,7 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
-    def butterKnifeVersion = "8.2.1"
+    def butterKnifeVersion = "8.3.0"
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
     compile 'com.jakewharton.timber:timber:4.3.0'
@@ -154,6 +157,8 @@ spoon {
     if (project.hasProperty('spoonMethodName')) {
         methodName = project.spoonMethodName
     }
+
+    codeCoverage = true
 
     grantAllPermissions = true
 }
