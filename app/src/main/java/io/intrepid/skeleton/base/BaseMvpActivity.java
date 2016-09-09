@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends BaseActivity implements BaseContract.View {
 
@@ -14,11 +15,27 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
 
     protected abstract int getLayoutResourceId();
 
-    @CallSuper
-    protected void onViewCreated(Bundle savedInstanceState) {
+    @Override
+    protected final void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         PresenterConfiguration configuration = getSkeletonApplication().getPresenterConfiguration();
         presenter = createPresenter(configuration);
+        onViewCreated(savedInstanceState);
         presenter.onViewCreated();
+    }
+
+    /**
+     * Override this method to do any additional view initialization (ex: setup RecycleView adapter)
+     */
+    protected void onViewCreated(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    @CallSuper
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        presenter.bindView(this);
     }
 
     @Override

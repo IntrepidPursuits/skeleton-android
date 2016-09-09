@@ -1,5 +1,6 @@
 package io.intrepid.skeleton.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
@@ -11,14 +12,26 @@ import timber.log.Timber;
 
 abstract class BaseActivity extends AppCompatActivity {
     @Override
-    protected final void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         Timber.v("Lifecycle onCreate: " + this);
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutResourceId());
         ButterKnife.bind(this);
+    }
 
-        onViewCreated(savedInstanceState);
+    @Override
+    @CallSuper
+    protected void onNewIntent(Intent intent) {
+        Timber.v("Lifecycle onNewIntent: " + this);
+        super.onNewIntent(intent);
+    }
+
+    @Override
+    @CallSuper
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Timber.v("Lifecycle onActivityResult: " + this);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -57,10 +70,6 @@ abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract int getLayoutResourceId();
-
-    protected void onViewCreated(Bundle savedInstanceState) {
-
-    }
 
     protected final SkeletonApplication getSkeletonApplication() {
         return (SkeletonApplication) getApplication();
