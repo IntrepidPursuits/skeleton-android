@@ -1,7 +1,5 @@
 package io.intrepid.skeleton.models;
 
-import android.support.annotation.VisibleForTesting;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -17,7 +15,6 @@ public class GitHubRepo {
     public GitHubRepo() {
     }
 
-    @VisibleForTesting
     public GitHubRepo(String name, GitHubOwner owner, Date createdAt) {
         this.name = name;
         this.owner = owner;
