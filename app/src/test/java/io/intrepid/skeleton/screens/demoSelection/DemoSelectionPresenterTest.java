@@ -11,7 +11,6 @@ import io.intrepid.skeleton.testutils.TestPresenterUtils;
 import static org.mockito.Mockito.verify;
 
 public class DemoSelectionPresenterTest {
-
     @Mock
     DemoSelectionContract.View mockView;
 
@@ -24,7 +23,7 @@ public class DemoSelectionPresenterTest {
     }
 
     @Test
-    public void testOnDemoSelected() throws Exception {
+    public void testOnDemoSelected_gitHubDemo() throws Exception {
         presenter.demoSelected(Demo.GITHUB);
         verify(mockView).gotoGitHubUserRepos();
     }

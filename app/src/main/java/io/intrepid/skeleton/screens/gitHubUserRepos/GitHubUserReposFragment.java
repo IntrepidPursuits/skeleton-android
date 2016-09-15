@@ -13,6 +13,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.intrepid.skeleton.R;
@@ -58,7 +60,7 @@ public class GitHubUserReposFragment extends BaseFragment<GitHubUserReposContrac
     @NonNull
     @Override
     public GitHubUserReposContract.Presenter createPresenter(PresenterConfiguration configuration) {
-        return new GitHubUserReposPresenter(this, configuration, GitHubRetrofitClient.getApi());
+        return new GitHubUserReposPresenter(this, configuration, GitHubRetrofitClient.getApi(), new ArrayList<>());
     }
 
     @OnClick(R.id.show_repos_button)

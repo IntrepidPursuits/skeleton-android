@@ -1,5 +1,7 @@
 package io.intrepid.skeleton.models;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.google.gson.annotations.SerializedName;
 
 public class GitHubOwner {
@@ -9,6 +11,12 @@ public class GitHubOwner {
     private String avatarUrl;
 
     public GitHubOwner() {
+    }
+
+    @VisibleForTesting
+    public GitHubOwner(String loginName, String avatarUrl) {
+        this.loginName = loginName;
+        this.avatarUrl = avatarUrl;
     }
 
     public String getLoginName() {

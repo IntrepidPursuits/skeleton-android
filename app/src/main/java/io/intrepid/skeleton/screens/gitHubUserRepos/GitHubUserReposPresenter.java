@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.intrepid.skeleton.SkeletonApplication;
@@ -18,14 +17,16 @@ import timber.log.Timber;
 
 public class GitHubUserReposPresenter extends BaseEventBusPresenter<GitHubUserReposContract.View> implements GitHubUserReposContract.Presenter {
     private GitHubApi gitHubApi;
-    private List<GitHubRepo> repos = new ArrayList<>();
+    private List<GitHubRepo> repos;
 
     public GitHubUserReposPresenter(@NonNull GitHubUserReposContract.View view,
                                     @NonNull PresenterConfiguration configuration,
-                                    @NonNull GitHubApi gitHubApi) {
+                                    @NonNull GitHubApi gitHubApi,
+                                    @NonNull List<GitHubRepo> repos) {
         super(view, configuration);
 
         this.gitHubApi = gitHubApi;
+        this.repos = repos;
     }
 
     @Override
