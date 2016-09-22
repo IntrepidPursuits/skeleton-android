@@ -14,7 +14,7 @@ public class Example1PresenterTest {
     @Mock
     Example1Contract.View mockView;
 
-    Example1Presenter presenter;
+    private Example1Presenter presenter;
 
     @Before
     public void setup() {

@@ -2,7 +2,7 @@ package io.intrepid.skeleton.screens.example1;
 
 import io.intrepid.skeleton.base.BaseContract;
 
-public class Example1Contract {
+class Example1Contract {
     public interface View extends BaseContract.View {
 
         void gotoExample2();

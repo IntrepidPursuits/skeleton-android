@@ -10,10 +10,10 @@ import io.intrepid.skeleton.utils.RxUtils;
 import rx.Observable;
 import rx.Subscription;
 
-public class Example2Presenter extends BasePresenter<Example2Contract.View> implements Example2Contract.Presenter {
+class Example2Presenter extends BasePresenter<Example2Contract.View> implements Example2Contract.Presenter {
 
-    public Example2Presenter(@NonNull Example2Contract.View view,
-                             @NonNull PresenterConfiguration configuration) {
+    Example2Presenter(@NonNull Example2Contract.View view,
+                      @NonNull PresenterConfiguration configuration) {
         super(view, configuration);
     }
 
