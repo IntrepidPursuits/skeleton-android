@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import io.intrepid.skeleton.testutils.TestPresenterUtils;
+import io.intrepid.skeleton.testutils.TestPresenterConfiguration;
 
 import static org.mockito.Mockito.verify;
 
@@ -19,7 +19,7 @@ public class Example1PresenterTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        presenter = new Example1Presenter(mockView, TestPresenterUtils.createTestConfiguration());
+        presenter = new Example1Presenter(mockView, TestPresenterConfiguration.createTestConfiguration());
     }
 
     @Test
