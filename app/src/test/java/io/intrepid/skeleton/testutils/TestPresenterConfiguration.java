@@ -2,24 +2,48 @@ package io.intrepid.skeleton.testutils;
 
 import android.support.annotation.NonNull;
 
+import org.mockito.Mockito;
+
+import java.util.concurrent.TimeUnit;
+
 import io.intrepid.skeleton.base.PresenterConfiguration;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
 import rx.schedulers.TestScheduler;
 
+@SuppressWarnings("WeakerAccess")
 public class TestPresenterConfiguration extends PresenterConfiguration {
-    public TestPresenterConfiguration(@NonNull TestScheduler ioScheduler,
-                                      @NonNull TestScheduler uiScheduler,
-                                      @NonNull UserSettings userSettings,
+    public static TestPresenterConfiguration createTestConfiguration() {
+        RestApi mockApi = Mockito.mock(RestApi.class);
+        UserSettings mockSettings = Mockito.mock(UserSettings.class);
+        return new TestPresenterConfiguration(
+                mockSettings,
+                mockApi
+        );
+    }
+
+    public TestPresenterConfiguration(@NonNull UserSettings userSettings,
                                       @NonNull RestApi restApi) {
-        super(ioScheduler, uiScheduler, userSettings, restApi);
+        super(new TestScheduler(), new TestScheduler(), userSettings, restApi);
     }
 
-    public TestScheduler getTestIoScheduler() {
-        return (TestScheduler) getIoScheduler();
+    @NonNull
+    @Override
+    public TestScheduler getIoScheduler() {
+        return (TestScheduler) super.getIoScheduler();
     }
 
-    public TestScheduler getTestUiScheduler() {
-        return (TestScheduler) getUiScheduler();
+    @NonNull
+    @Override
+    public TestScheduler getUiScheduler() {
+        return (TestScheduler) super.getUiScheduler();
+    }
+
+    /**
+     * Helper method for triggering pending Rx events
+     */
+    public void advanceRxSchedulers(long delayTime, TimeUnit unit) {
+        getIoScheduler().advanceTimeBy(delayTime, unit);
+        getUiScheduler().triggerActions();
     }
 }

@@ -8,7 +8,6 @@ import org.mockito.MockitoAnnotations;
 import java.util.concurrent.TimeUnit;
 
 import io.intrepid.skeleton.testutils.TestPresenterConfiguration;
-import io.intrepid.skeleton.testutils.TestPresenterUtils;
 
 import static org.mockito.Mockito.verify;
 
@@ -17,13 +16,13 @@ public class Example2PresenterTest {
     @Mock
     Example2Contract.View mockView;
 
-    Example2Presenter presenter;
+    private Example2Presenter presenter;
     private TestPresenterConfiguration testConfiguration;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        testConfiguration = TestPresenterUtils.createTestConfiguration();
+        testConfiguration = TestPresenterConfiguration.createTestConfiguration();
         presenter = new Example2Presenter(mockView, testConfiguration);
     }
 
@@ -32,9 +31,7 @@ public class Example2PresenterTest {
         presenter.onViewCreated();
 
         // "Time keeps on slippin' slippin' slippin'... into the future."
-        testConfiguration.getTestIoScheduler().advanceTimeBy(4, TimeUnit.SECONDS);
-        testConfiguration.getTestUiScheduler().triggerActions();
-        // We may eventually want to have something like testConfig.advanceTimeBy() which does both of the above?
+        testConfiguration.advanceRxSchedulers(4, TimeUnit.SECONDS);
 
         verify(mockView).showText("Hello World!");
     }

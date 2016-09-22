@@ -8,9 +8,9 @@ import rx.Scheduler;
 
 public class PresenterConfiguration {
     @NonNull
-    private final Scheduler ioScheduler;
+    protected final Scheduler ioScheduler;
     @NonNull
-    private final Scheduler uiScheduler;
+    protected final Scheduler uiScheduler;
     @NonNull
     private final UserSettings userSettings;
     @NonNull
