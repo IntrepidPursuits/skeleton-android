@@ -16,7 +16,7 @@ ext.getLocalProperty = { propertyName ->
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "io.intrepid.skeleton"
@@ -92,7 +92,7 @@ dependencies {
     }
 
     // Support libraries
-    def supportVersion = "24.2.0";
+    def supportVersion = "24.2.1";
     compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
@@ -103,7 +103,7 @@ dependencies {
     compile "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
-    compile "io.reactivex:rxjava:1.1.9"
+    compile "io.reactivex:rxjava:1.2.0"
     compile "io.reactivex:rxandroid:1.2.1"
 
     // Jake Wharton/Square
@@ -116,7 +116,7 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
-    def butterKnifeVersion = "8.3.0"
+    def butterKnifeVersion = "8.4.0"
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
     compile 'com.jakewharton.timber:timber:4.3.0'

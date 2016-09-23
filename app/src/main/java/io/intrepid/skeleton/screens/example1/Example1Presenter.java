@@ -5,10 +5,10 @@ import android.support.annotation.NonNull;
 import io.intrepid.skeleton.base.BasePresenter;
 import io.intrepid.skeleton.base.PresenterConfiguration;
 
-public class Example1Presenter extends BasePresenter<Example1Contract.View> implements Example1Contract.Presenter {
+class Example1Presenter extends BasePresenter<Example1Contract.View> implements Example1Contract.Presenter {
 
-    public Example1Presenter(@NonNull Example1Contract.View view,
-                             @NonNull PresenterConfiguration configuration) {
+    Example1Presenter(@NonNull Example1Contract.View view,
+                      @NonNull PresenterConfiguration configuration) {
         super(view, configuration);
     }
 
