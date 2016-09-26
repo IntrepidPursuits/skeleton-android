@@ -46,13 +46,14 @@ if [ "$newPackageName" != "$oldPackageName" ]; then
     find . -type f \( ! -iname "*.png" \) -exec sed -i '' "s/$oldPackageName/$newPackageName/g" {} \;
     find . -type f \( ! -iname "*.png" \) -exec sed -i '' "s/$oldApplicationCapitalizedName/$newApplicationCapitalizedName/g" {} \;
 
-    mkdir -p src/androidTest/java/$newDirectoryName
-    mkdir -p src/main/java/$newDirectoryName
-    mkdir -p src/test/java/$newDirectoryName
-    mv src/androidTest/java/io/intrepid/skeleton/* src/androidTest/java/$newDirectoryName/
-    mv src/main/java/io/intrepid/skeleton/* src/main/java/$newDirectoryName/
-    mv src/test/java/io/intrepid/skeleton/* src/test/java/$newDirectoryName/
-    rm -r src/androidTest/java/io/
-    rm -r src/main/java/io/
-    rm -r src/test/java/io/
+    mkdir temp
+    declare -a srcDirs=("androidTest" "main" "test")
+    for i in "${srcDirs[@]}"
+    do
+	    mv src/$i/java/io/intrepid/skeleton/* temp/
+	    rm -r src/$i/java/io/
+	    mkdir -p src/$i/java/$newDirectoryName
+	    mv temp/* src/$i/java/$newDirectoryName/
+    done
+    rmdir temp
 fi
