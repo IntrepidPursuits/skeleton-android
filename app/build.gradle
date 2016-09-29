@@ -55,7 +55,7 @@ android {
             buildConfigField "boolean", "LOG_CONSOLE", "true"
             buildConfigField "boolean", "REPORT_CRASH", "false"
 
-            testCoverageEnabled = true
+            testCoverageEnabled(project.hasProperty('coverage'))
         }
 
         qa {
