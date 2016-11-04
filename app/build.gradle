@@ -57,8 +57,6 @@ android {
 
             buildConfigField "boolean", "LOG_CONSOLE", "true"
             buildConfigField "boolean", "REPORT_CRASH", "false"
-
-            testCoverageEnabled(project.hasProperty('coverage'))
         }
 
         qa {
@@ -161,8 +159,6 @@ spoon {
     if (project.hasProperty('spoonMethodName')) {
         methodName = project.spoonMethodName
     }
-
-    codeCoverage = true
 
     grantAllPermissions = true
 }

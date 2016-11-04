@@ -61,3 +61,24 @@ task instrumentationTestCoverage(type: JacocoReport, dependsOn: 'spoonDebugAndro
         println "${buildDir}/reports/jacoco/instrumentationTestCoverage/html/index.html"
     }
 }
+
+android {
+    buildTypes {
+        debug {
+            testCoverageEnabled(project.hasProperty('coverage'))
+        }
+    }
+
+    testOptions {
+        unitTests.all {
+            jacoco {
+                // needed so that Robolectric tests are included in the results
+                includeNoLocationClasses = true
+            }
+        }
+    }
+}
+
+spoon {
+    codeCoverage = project.hasProperty('coverage')
+}
