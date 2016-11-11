@@ -2,7 +2,10 @@ package io.intrepid.skeleton;
 
 import android.os.AsyncTask;
 
+import org.mockito.Mockito;
+
 import io.intrepid.skeleton.base.PresenterConfiguration;
+import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.rest.RetrofitClient;
 import io.intrepid.skeleton.settings.SharePreferencesManager;
@@ -21,8 +24,8 @@ public class InstrumentationTestApplication extends SkeletonApplication {
                 Schedulers.from(AsyncTask.THREAD_POOL_EXECUTOR),
                 AndroidSchedulers.mainThread(),
                 userSettingsOverride != null ? userSettingsOverride : SharePreferencesManager.getInstance(this),
-                restApiOverride != null ? restApiOverride : RetrofitClient.getApi()
-        );
+                restApiOverride != null ? restApiOverride : RetrofitClient.getApi(),
+                Mockito.mock(CrashReporter.class));
     }
 
     public static void overrideResApi(RestApi restApi) {

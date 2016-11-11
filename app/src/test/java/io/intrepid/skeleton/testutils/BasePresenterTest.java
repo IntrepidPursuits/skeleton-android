@@ -6,6 +6,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import io.intrepid.skeleton.base.BasePresenter;
+import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
 import rx.schedulers.TestScheduler;
@@ -20,6 +21,7 @@ public class BasePresenterTest<P extends BasePresenter> {
     protected TestScheduler uiScheduler;
     protected RestApi mockRestApi;
     protected UserSettings mockUserSettings;
+    protected CrashReporter mockCrashReporter;
 
     @Before
     public void baseSetup() {
@@ -28,5 +30,6 @@ public class BasePresenterTest<P extends BasePresenter> {
         uiScheduler = testConfiguration.getUiScheduler();
         mockRestApi = testConfiguration.getRestApi();
         mockUserSettings = testConfiguration.getUserSettings();
+        mockCrashReporter = testConfiguration.getCrashReporter();
     }
 }

@@ -2,6 +2,7 @@ package io.intrepid.skeleton.base;
 
 import android.support.annotation.NonNull;
 
+import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
 import rx.Observable;
@@ -21,6 +22,8 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
     protected final UserSettings userSettings;
     @NonNull
     protected final RestApi restApi;
+    @NonNull
+    protected final CrashReporter crashReporter;
 
     private boolean isViewBound = false;
 
@@ -30,6 +33,7 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
         this.uiScheduler = configuration.getUiScheduler();
         this.userSettings = configuration.getUserSettings();
         this.restApi = configuration.getRestApi();
+        this.crashReporter = configuration.getCrashReporter();
     }
 
     @Override
