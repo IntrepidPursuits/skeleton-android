@@ -13,8 +13,8 @@ public abstract class BaseFragmentActivity extends BaseActivity {
     }
 
     @Override
-    protected void onViewCreated(Bundle savedInstanceState) {
-        super.onViewCreated(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         if (savedInstanceState == null) {
             Intent intent = getIntent();

@@ -37,9 +37,11 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
         presenter = createPresenter(configuration);
     }
 
+    /**
+     * Override {@link #onViewCreated(Bundle)} to handle any logic that needs to occur right after inflating the view.
+     * onViewCreated is called immediately after onCreateView
+     */
     @Override
-    // Override onViewCreated to handle any logic that needs to occur right after inflating the view.
-    // onViewCreated is called immediately after onCreateView
     public final View onCreateView(LayoutInflater inflater,
                                    @Nullable ViewGroup container,
                                    @Nullable Bundle savedInstanceState) {
@@ -51,11 +53,18 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
     }
 
     @Override
-    @CallSuper
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        onViewCreated(savedInstanceState);
         presenter.onViewCreated();
     }
+
+    /**
+     * Override this method to do any additional view initialization (ex: setup RecyclerView adapter)
+     */
+    protected void onViewCreated(@Nullable Bundle savedInstanceState) {
+    }
+
 
     protected abstract int getLayoutResourceId();
 
@@ -65,6 +74,7 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
     @Override
     @CallSuper
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Timber.v("Lifecycle onActivityResult: " + this);
         super.onActivityResult(requestCode, resultCode, data);
         presenter.bindView(this);
     }
