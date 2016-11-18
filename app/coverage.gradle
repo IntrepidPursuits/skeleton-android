@@ -29,6 +29,11 @@ task testCoverage(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'spoonDeb
         println "You can view the coverage report at:"
         println "${buildDir}/reports/jacoco/testCoverage/html/index.html"
     }
+
+    reports {
+        xml.enabled true
+        xml.destination "${buildDir}/reports/jacoco/testCoverage/coverage.xml"
+    }
 }
 
 // Run and generate the report for the unit tests. The test report only includes the coverage data for
@@ -48,6 +53,11 @@ task unitTestCoverage(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
         println "You can view the coverage report at:"
         println "${buildDir}/reports/jacoco/unitTestCoverage/html/index.html"
     }
+
+    reports {
+        xml.enabled true
+        xml.destination "${buildDir}/reports/jacoco/unitTestCoverage/coverage.xml"
+    }
 }
 
 // Run and generate the report for the instrumentation test
@@ -59,6 +69,11 @@ task instrumentationTestCoverage(type: JacocoReport, dependsOn: 'spoonDebugAndro
     doLast {
         println "You can view the coverage report at:"
         println "${buildDir}/reports/jacoco/instrumentationTestCoverage/html/index.html"
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination "${buildDir}/reports/jacoco/instrumentationTestCoverage/coverage.xml"
     }
 }
 
