@@ -1,8 +1,13 @@
 package io.intrepid.skeleton.rules;
 
+import android.support.annotation.RawRes;
+import android.support.test.InstrumentationRegistry;
+
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
+
+import java.io.InputStream;
 
 import io.intrepid.skeleton.testutils.TestFileUtils;
 import okhttp3.mockwebserver.MockResponse;
@@ -19,10 +24,11 @@ public class MockServerRule implements TestRule {
     /**
      * Enqueues a file as the response of the next server request
      *
-     * @param fileName The name of the file. The file should be under the "resources" directory
+     * @param jsonRes The raw resource id. The file should be under the "androidTest/res/raw" directory
      */
-    public void enqueueResponse(String fileName) {
-        String serverResponse = TestFileUtils.getStringFromFile(fileName, getClass().getClassLoader());
+    public void enqueueResponse(@RawRes int jsonRes) {
+        InputStream inputStream = InstrumentationRegistry.getContext().getResources().openRawResource(jsonRes);
+        String serverResponse = TestFileUtils.convertStreamToString(inputStream);
         server.enqueue(new MockResponse().setResponseCode(200).setBody(serverResponse));
     }
 

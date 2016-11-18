@@ -9,11 +9,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://google.com";
+    // TODO: change this to a real endpoint
+    private static final String BASE_URL = "https://api.ipify.org/";
     private static final int CONNECTION_TIMEOUT = 30;
 
     private static RestApi instance;
@@ -45,7 +47,7 @@ public class RetrofitClient {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(httpClient)
-                // TODO: add Gson/Jackson converter factory
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
                 .create(RestApi.class);

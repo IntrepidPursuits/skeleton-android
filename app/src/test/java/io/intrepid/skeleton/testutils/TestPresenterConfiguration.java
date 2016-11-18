@@ -4,9 +4,8 @@ import android.support.annotation.NonNull;
 
 import org.mockito.Mockito;
 
-import java.util.concurrent.TimeUnit;
-
 import io.intrepid.skeleton.base.PresenterConfiguration;
+import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
 import rx.schedulers.TestScheduler;
@@ -16,15 +15,18 @@ public class TestPresenterConfiguration extends PresenterConfiguration {
     public static TestPresenterConfiguration createTestConfiguration() {
         RestApi mockApi = Mockito.mock(RestApi.class);
         UserSettings mockSettings = Mockito.mock(UserSettings.class);
+        CrashReporter crashReporter = Mockito.mock(CrashReporter.class);
         return new TestPresenterConfiguration(
                 mockSettings,
-                mockApi
+                mockApi,
+                crashReporter
         );
     }
 
     public TestPresenterConfiguration(@NonNull UserSettings userSettings,
-                                      @NonNull RestApi restApi) {
-        super(new TestScheduler(), new TestScheduler(), userSettings, restApi);
+                                      @NonNull RestApi restApi,
+                                      @NonNull CrashReporter crashReporter) {
+        super(new TestScheduler(), new TestScheduler(), userSettings, restApi, crashReporter);
     }
 
     @NonNull
@@ -42,8 +44,8 @@ public class TestPresenterConfiguration extends PresenterConfiguration {
     /**
      * Helper method for triggering pending Rx events
      */
-    public void advanceRxSchedulers(long delayTime, TimeUnit unit) {
-        getIoScheduler().advanceTimeBy(delayTime, unit);
+    public void triggerRxSchedulers() {
+        getIoScheduler().triggerActions();
         getUiScheduler().triggerActions();
     }
 }

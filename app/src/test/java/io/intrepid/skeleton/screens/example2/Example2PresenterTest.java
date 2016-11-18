@@ -3,36 +3,47 @@ package io.intrepid.skeleton.screens.example2;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.util.concurrent.TimeUnit;
-
-import io.intrepid.skeleton.testutils.TestPresenterConfiguration;
+import io.intrepid.skeleton.models.IpModel;
+import io.intrepid.skeleton.testutils.BasePresenterTest;
+import rx.Observable;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-public class Example2PresenterTest {
+public class Example2PresenterTest extends BasePresenterTest<Example2Presenter> {
 
     @Mock
     Example2Contract.View mockView;
 
-    private Example2Presenter presenter;
-    private TestPresenterConfiguration testConfiguration;
-
     @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        testConfiguration = TestPresenterConfiguration.createTestConfiguration();
+    public void setUp() {
         presenter = new Example2Presenter(mockView, testConfiguration);
     }
 
     @Test
-    public void testDelayedAction() throws Exception {
+    public void testOnViewCreated() throws Exception {
+        final String mockIp = "127.0.0.1";
+        final String mockPreviousIp = "127.0.0.2";
+
+        IpModel mockIpModel = new IpModel();
+        mockIpModel.ip = mockIp;
+        when(mockRestApi.getMyIp()).thenReturn(Observable.just(mockIpModel));
+        when(mockUserSettings.getLastIp()).thenReturn(mockPreviousIp);
+
         presenter.onViewCreated();
+        verify(mockView).showPreviousIpAddress(mockPreviousIp);
+        testConfiguration.triggerRxSchedulers();
+        verify(mockView).showCurrentIpAddress(mockIp);
+        verify(mockUserSettings).setLastIp(mockIp);
+    }
 
-        // "Time keeps on slippin' slippin' slippin'... into the future."
-        testConfiguration.advanceRxSchedulers(4, TimeUnit.SECONDS);
+    @Test
+    public void testOnViewCreated_NoPreviousIp() throws Exception {
+        when(mockRestApi.getMyIp()).thenReturn(Observable.empty());
+        when(mockUserSettings.getLastIp()).thenReturn(null);
 
-        verify(mockView).showText("Hello World!");
+        presenter.onViewCreated();
+        verify(mockView).hidePreviousIpAddress();
     }
 }

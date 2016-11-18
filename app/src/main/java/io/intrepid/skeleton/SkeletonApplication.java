@@ -30,7 +30,8 @@ public class SkeletonApplication extends Application {
                 Schedulers.io(),
                 AndroidSchedulers.mainThread(),
                 SharePreferencesManager.getInstance(this),
-                RetrofitClient.getApi()
+                RetrofitClient.getApi(),
+                CrashlyticsReporter.getInstance()
         );
     }
 }

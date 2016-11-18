@@ -112,6 +112,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    compile "com.google.code.gson:gson:2.7"
 
     def okhttpVersion = "3.4.1"
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
@@ -135,17 +136,27 @@ dependencies {
 
     // Unit tests
     def junitVersion = "4.12"
-    testCompile "junit:junit:$junitVersion"
-    testCompile "org.mockito:mockito-core:1.10.19"
-    testCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
-    testCompile "com.android.support:support-annotations:$supportVersion"
+    def junitLib = "junit:junit:$junitVersion"
+    def mockitoLib = "org.mockito:mockito-core:1.10.19"
+    def supportAnnotationLib = "com.android.support:support-annotations:$supportVersion"
+    testCompile junitLib
+    testCompile mockitoLib
+    testCompile supportAnnotationLib
 
     // UI tests
-    androidTestCompile "junit:junit:$junitVersion"
+    androidTestCompile junitLib
+    androidTestCompile mockitoLib
+    androidTestCompile supportAnnotationLib
+    def androidTestVersion = "0.5"
+    androidTestCompile "com.android.support.test:runner:$androidTestVersion"
+    androidTestCompile "com.android.support.test:rules:$androidTestVersion"
     def espressoVersion = "2.2.1"
     androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoVersion"
     androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
-    androidTestCompile "com.android.support:support-annotations:$supportVersion"
+    androidTestCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+    def dexMakerVersion = "1.2"
+    androidTestCompile "com.google.dexmaker:dexmaker:$dexMakerVersion"
+    androidTestCompile "com.google.dexmaker:dexmaker-mockito:$dexMakerVersion"
 }
 
 spoon {
