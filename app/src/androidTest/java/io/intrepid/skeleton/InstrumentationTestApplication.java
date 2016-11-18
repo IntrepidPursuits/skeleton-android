@@ -28,7 +28,7 @@ public class InstrumentationTestApplication extends SkeletonApplication {
                 Mockito.mock(CrashReporter.class));
     }
 
-    public static void overrideResApi(RestApi restApi) {
+    public static void overrideRestApi(RestApi restApi) {
         restApiOverride = restApi;
     }
 

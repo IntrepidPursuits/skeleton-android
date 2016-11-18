@@ -36,7 +36,7 @@ public class ExampleSmokeTest extends BaseUiTest {
 
     @Before
     public void setUp() {
-        InstrumentationTestApplication.overrideResApi(TestRestClient.getRestApi(mockServerRule));
+        InstrumentationTestApplication.overrideRestApi(TestRestClient.getRestApi(mockServerRule));
         InstrumentationTestApplication.overrideUserSettings(mockUserSettings);
     }
 
