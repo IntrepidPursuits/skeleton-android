@@ -19,6 +19,12 @@ def coverageClassDirs = fileTree(
 def unitTestCoverageData = "${buildDir}/jacoco/testDebugUnitTest.exec"
 def instrumentationTestCoverageData = "${buildDir}/spoon/debug/coverage/merged-coverage.ec"
 
+// testCoverageEnabled messes up debugging/etc, so we want it disabled most of times.
+// unit test coverage reports seems to work fine even with the flag disabled, but the
+// instrumentation tests need this flag otherwise the coverage data may be incomplete
+def startTaskNames = gradle.startParameter.taskNames
+def isRunningInstrumentationCoverage = startTaskNames.contains('instrumentationTestCoverage') || startTaskNames.contains('testCoverage')
+
 // Run both unit and instrumentation tests and merge the result of both tests into a single report
 task testCoverage(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'spoonDebugAndroidTest']) {
     sourceDirectories = coverageSourceDirs
@@ -80,7 +86,7 @@ task instrumentationTestCoverage(type: JacocoReport, dependsOn: 'spoonDebugAndro
 android {
     buildTypes {
         debug {
-            testCoverageEnabled(project.hasProperty('coverage'))
+            testCoverageEnabled(isRunningInstrumentationCoverage)
         }
     }
 
@@ -95,5 +101,5 @@ android {
 }
 
 spoon {
-    codeCoverage = project.hasProperty('coverage')
+    codeCoverage = isRunningInstrumentationCoverage
 }

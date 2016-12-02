@@ -40,5 +40,5 @@ Unit tests can run be using the standard commands. ex. `./gradlew testDebugUnitT
 This project uses [Spoon](https://github.com/square/spoon) and its [gradle plugin](https://github.com/stanfy/spoon-gradle-plugin) to run instrumentation tests. To run an instrumentation test, use `./gradlew spoon`
 
 ### Code coverage
-Code coverage configuration are handled by [coverage.gradle](app/coverage.gradle). To generate a code coverage report, use `./gradlew testCoverage -Pcoverage`. This will run both unit and instrumentation tests and merge the result of both tests into a single report.
+Code coverage configuration are handled by [coverage.gradle](app/coverage.gradle). To generate a code coverage report, use `./gradlew testCoverage`. This will run both unit and instrumentation tests and merge the result of both tests into a single report.
 
