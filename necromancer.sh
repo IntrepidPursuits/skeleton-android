@@ -57,3 +57,7 @@ if [ "$newPackageName" != "$oldPackageName" ]; then
     done
     rmdir temp
 fi
+
+git add --all
+git commit -m "Initial import from Skeleton"
+git remote remove origin
