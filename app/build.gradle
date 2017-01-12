@@ -22,13 +22,13 @@ android {
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "io.intrepid.skeleton"
+        applicationId "io.intrepid.getaprint"
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "io.intrepid.skeleton.CustomTestRunner"
+        testInstrumentationRunner "io.intrepid.getaprint.CustomTestRunner"
     }
 
     signingConfigs {
