@@ -21,6 +21,10 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     protected abstract int getLayoutResourceId();
 
     @Override
+    /**
+     * Override {@link #onViewCreated(Bundle)} to handle any logic that needs to occur right after inflating the view.
+     * onViewCreated is called immediately after onCreateView
+     */
     protected final void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PresenterConfiguration configuration = getSkeletonApplication().getPresenterConfiguration();

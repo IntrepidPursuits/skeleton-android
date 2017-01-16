@@ -48,7 +48,6 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
         Timber.v("Lifecycle onCreateView: " + this);
         View view = inflater.inflate(getLayoutResourceId(), container, false);
         unbinder = ButterKnife.bind(this, view);
-        presenter.bindView(this);
         return view;
     }
 
