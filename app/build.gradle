@@ -18,13 +18,13 @@ ext.getLocalProperty = { propertyName ->
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "io.intrepid.skeleton"
         minSdkVersion 17
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
@@ -88,19 +88,19 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.1@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
         transitive = true;
     }
 
     // Support libraries
-    def supportVersion = "24.2.1";
+    def supportVersion = "25.1.0";
     compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
 
     // Google play services
-    def googlePlayVersion = "9.4.0";
+    def googlePlayVersion = "10.0.1";
     compile "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
@@ -114,31 +114,33 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
     compile "com.google.code.gson:gson:2.7"
 
-    def okhttpVersion = "3.4.1"
+    def okhttpVersion = "3.5.0"
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
     def butterKnifeVersion = "8.4.0"
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
-    compile 'com.jakewharton.timber:timber:4.3.0'
+    compile 'com.jakewharton.timber:timber:4.5.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     // Other
-    compile "io.intrepid.commonutils:commonutils:0.1.0"
+    compile "io.intrepid.commonutils:commonutils:0.2.0"
 
     // LeakCanary
-    def leakCanaryVersion = "1.4-beta2"
+    def leakCanaryVersion = "1.5"
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     qaCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
 
-    // Unit tests
-    def junitVersion = "4.12"
-    def junitLib = "junit:junit:$junitVersion"
-    def mockitoLib = "org.mockito:mockito-core:1.10.19"
+    // Common test dependencies
+    def junitLib = "junit:junit:4.12"
+    def mockitoVersion = "2.6.1"
+    def mockitoLib = "org.mockito:mockito-core:$mockitoVersion"
     def supportAnnotationLib = "com.android.support:support-annotations:$supportVersion"
+
+    // Unit tests
     testCompile junitLib
     testCompile mockitoLib
     testCompile supportAnnotationLib
@@ -147,16 +149,15 @@ dependencies {
     androidTestCompile junitLib
     androidTestCompile mockitoLib
     androidTestCompile supportAnnotationLib
+    androidTestCompile "org.mockito:mockito-android:$mockitoVersion"
+
     def androidTestVersion = "0.5"
     androidTestCompile "com.android.support.test:runner:$androidTestVersion"
     androidTestCompile "com.android.support.test:rules:$androidTestVersion"
-    def espressoVersion = "2.2.1"
+    def espressoVersion = "2.2.2"
     androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoVersion"
     androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
     androidTestCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
-    def dexMakerVersion = "1.2"
-    androidTestCompile "com.google.dexmaker:dexmaker:$dexMakerVersion"
-    androidTestCompile "com.google.dexmaker:dexmaker-mockito:$dexMakerVersion"
 }
 
 spoon {
