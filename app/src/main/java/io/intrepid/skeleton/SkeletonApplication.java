@@ -11,6 +11,7 @@ import io.intrepid.skeleton.rest.RetrofitClient;
 import io.intrepid.skeleton.settings.SharePreferencesManager;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class SkeletonApplication extends Application {
 
@@ -23,6 +24,16 @@ public class SkeletonApplication extends Application {
         CrashlyticsReporter.init(this);
 
         TimberConfig.init(CrashlyticsReporter.getInstance());
+
+        initCalligraphy();
+    }
+
+    private void initCalligraphy() {
+        CalligraphyConfig config = new CalligraphyConfig.Builder()
+                .setDefaultFontPath(getString(R.string.Roboto_Regular))
+                .setFontAttrId(R.attr.fontPath)
+                .build();
+        CalligraphyConfig.initDefault(config);
     }
 
     public PresenterConfiguration getPresenterConfiguration() {
