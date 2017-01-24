@@ -5,13 +5,13 @@ import android.support.annotation.NonNull;
 import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
-import rx.Observable;
-import rx.Scheduler;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.Scheduler;
+import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BasePresenter<T extends BaseContract.View> implements BaseContract.Presenter<T> {
 
-    protected final CompositeSubscription subscriptions = new CompositeSubscription();
+    protected final CompositeDisposable disposables = new CompositeDisposable();
 
     protected T view;
     @NonNull
@@ -57,7 +57,7 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
 
     @Override
     public final void unbindView() {
-        subscriptions.clear();
+        disposables.clear();
         this.view = null;
 
         if (isViewBound) {
@@ -72,14 +72,14 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
 
     /**
      * Note: The view will be null at this point. This method is for any additional cleanup that's not handled
-     * by the CompositeSubscription
+     * by the CompositeDisposable
      */
     @Override
     public void onViewDestroyed() {
 
     }
 
-    protected <R> Observable.Transformer<R, R> subscribeOnIoObserveOnUi() {
+    protected <R> ObservableTransformer<R, R> subscribeOnIoObserveOnUi() {
         return observable -> observable.subscribeOn(ioScheduler).observeOn(uiScheduler);
     }
 }

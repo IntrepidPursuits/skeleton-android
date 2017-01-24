@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
-import rx.Scheduler;
+import io.reactivex.Scheduler;
 
 /**
  * Wrapper class for common dependencies that all presenters are expected to have
