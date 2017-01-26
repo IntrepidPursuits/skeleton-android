@@ -4,9 +4,15 @@ jacoco {
     toolVersion = "0.7.7.201606060606"
 }
 
+// change the buildType and productFlavor fields here if the project uses different build variant for testing
+def buildType = "debug";
+def productFlavor = "";
+def buildVariant = "${productFlavor.capitalize()}${buildType.capitalize()}";
+def buildVariantDirectory = "${productFlavor}/${buildType}"
+
 def coverageSourceDirs = files(['src/main/java'])
 def coverageClassDirs = fileTree(
-        dir: "${buildDir}/intermediates/classes/debug",
+        dir: "${buildDir}/intermediates/classes/${buildVariantDirectory}",
         excludes: ['**/R.class',
                    '**/R$*.class',
                    '**/BuildConfig.*',
@@ -16,8 +22,8 @@ def coverageClassDirs = fileTree(
         ]
 )
 
-def unitTestCoverageData = "${buildDir}/jacoco/testDebugUnitTest.exec"
-def instrumentationTestCoverageData = "${buildDir}/spoon/debug/coverage/merged-coverage.ec"
+def unitTestCoverageData = "${buildDir}/jacoco/test${buildVariant}UnitTest.exec"
+def instrumentationTestCoverageData = "${buildDir}/spoon/${buildVariantDirectory}/coverage/merged-coverage.ec"
 
 // testCoverageEnabled messes up debugging/etc, so we want it disabled most of times.
 // unit test coverage reports seems to work fine even with the flag disabled, but the
@@ -26,7 +32,7 @@ def startTaskNames = gradle.startParameter.taskNames
 def isRunningInstrumentationCoverage = startTaskNames.contains('instrumentationTestCoverage') || startTaskNames.contains('testCoverage')
 
 // Run both unit and instrumentation tests and merge the result of both tests into a single report
-task testCoverage(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'spoonDebugAndroidTest']) {
+task testCoverage(type: JacocoReport, dependsOn: ["test${buildVariant}UnitTest", "spoon${buildVariant}AndroidTest"]) {
     sourceDirectories = coverageSourceDirs
     classDirectories = coverageClassDirs
     executionData = files([unitTestCoverageData, instrumentationTestCoverageData])
@@ -44,16 +50,16 @@ task testCoverage(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'spoonDeb
 
 // Run and generate the report for the unit tests. The test report only includes the coverage data for
 // the presenter and utils classes since we generally don't unit test any Android related classes
-task unitTestCoverage(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+task unitTestCoverage(type: JacocoReport, dependsOn: "test${buildVariant}UnitTest") {
     sourceDirectories = coverageSourceDirs
     classDirectories = fileTree(
-            dir: "${buildDir}/intermediates/classes/debug",
+            dir: "${buildDir}/intermediates/classes/${buildVariantDirectory}",
             includes: ['**/*Presenter*',
                        '**/utils/*'
                        // Add any additional testable classes here
             ]
     )
-    executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+    executionData = files("${buildDir}/jacoco/test${buildVariant}UnitTest.exec")
 
     doLast {
         println "You can view the coverage report at:"
@@ -67,7 +73,7 @@ task unitTestCoverage(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
 }
 
 // Run and generate the report for the instrumentation test
-task instrumentationTestCoverage(type: JacocoReport, dependsOn: 'spoonDebugAndroidTest') {
+task instrumentationTestCoverage(type: JacocoReport, dependsOn: "spoon${buildVariant}AndroidTest") {
     sourceDirectories = coverageSourceDirs
     classDirectories = coverageClassDirs
     executionData = files(instrumentationTestCoverageData)
