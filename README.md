@@ -1,7 +1,7 @@
 # Skeleton
 
-[![Build Status](http://ci.intrepid.io:8080/buildStatus/icon?job=skeleton-android)](http://ci.intrepid.io:8080/job/skeleton-android/)
-[![Coverage](http://ci.intrepid.io:9913/jenkins/cobertura/skeleton-android/)](http://ci.intrepid.io:8080/job/skeleton-android/cobertura/)
+[![Build Status](https://ci.intrepid.io/buildStatus/icon?job=skeleton-android)](https://ci.intrepid.io/job/skeleton-android/)
+[![Coverage](http://ci.intrepid.io:9913/jenkins/cobertura/skeleton-android/)](https://ci.intrepid.io/job/skeleton-android/cobertura/)
 
 The starting point for Android apps at Intrepid.
 
