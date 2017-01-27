@@ -13,7 +13,7 @@ class Example1Presenter extends BasePresenter<Example1Contract.View> implements 
     }
 
     @Override
-    public void onButtonClicked() {
+    public void onButtonClick() {
         view.gotoExample2();
     }
 }

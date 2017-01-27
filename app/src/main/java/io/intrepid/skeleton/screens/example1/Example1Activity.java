@@ -23,8 +23,8 @@ public class Example1Activity extends BaseMvpActivity<Example1Contract.Presenter
     }
 
     @OnClick(R.id.example1_button)
-    void onButtonClicked() {
-        presenter.onButtonClicked();
+    void onButtonClick() {
+        presenter.onButtonClick();
     }
 
     @Override
