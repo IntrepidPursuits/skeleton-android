@@ -20,8 +20,8 @@ public class Example1PresenterTest extends BasePresenterTest<Example1Presenter> 
     }
 
     @Test
-    public void testOnButtonClicked() throws Exception {
-        presenter.onButtonClicked();
+    public void onButtonClick() throws Exception {
+        presenter.onButtonClick();
         verify(mockView).gotoExample2();
     }
 }

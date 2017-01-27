@@ -22,7 +22,7 @@ public class Example2PresenterTest extends BasePresenterTest<Example2Presenter> 
     }
 
     @Test
-    public void testOnViewCreated() throws Exception {
+    public void onViewCreated() throws Exception {
         final String mockIp = "127.0.0.1";
         final String mockPreviousIp = "127.0.0.2";
 
@@ -39,7 +39,7 @@ public class Example2PresenterTest extends BasePresenterTest<Example2Presenter> 
     }
 
     @Test
-    public void testOnViewCreated_NoPreviousIp() throws Exception {
+    public void onViewCreated_NoPreviousIp() throws Exception {
         when(mockRestApi.getMyIp()).thenReturn(Observable.empty());
         when(mockUserSettings.getLastIp()).thenReturn(null);
 

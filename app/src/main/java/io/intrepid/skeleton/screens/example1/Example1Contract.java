@@ -10,6 +10,6 @@ class Example1Contract {
 
     public interface Presenter extends BaseContract.Presenter<View> {
 
-        void onButtonClicked();
+        void onButtonClick();
     }
 }
