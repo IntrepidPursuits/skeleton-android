@@ -9,8 +9,8 @@ import io.intrepid.skeleton.logging.CrashlyticsReporter;
 import io.intrepid.skeleton.logging.TimberConfig;
 import io.intrepid.skeleton.rest.RetrofitClient;
 import io.intrepid.skeleton.settings.SharePreferencesManager;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class SkeletonApplication extends Application {

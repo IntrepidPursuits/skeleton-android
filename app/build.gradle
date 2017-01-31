@@ -104,14 +104,14 @@ dependencies {
     compile "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
-    compile "io.reactivex:rxjava:1.2.0"
-    compile "io.reactivex:rxandroid:1.2.1"
+    compile "io.reactivex.rxjava2:rxjava:2.0.4"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
 
     // Jake Wharton/Square
     def retrofitVersion = "2.1.0";
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
     compile "com.google.code.gson:gson:2.7"
 
     def okhttpVersion = "3.5.0"

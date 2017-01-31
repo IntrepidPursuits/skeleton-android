@@ -10,8 +10,8 @@ import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.rest.RetrofitClient;
 import io.intrepid.skeleton.settings.SharePreferencesManager;
 import io.intrepid.skeleton.settings.UserSettings;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class InstrumentationTestApplication extends SkeletonApplication {
     private static RestApi restApiOverride = null;

@@ -6,7 +6,7 @@ import org.mockito.Mock;
 
 import io.intrepid.skeleton.models.IpModel;
 import io.intrepid.skeleton.testutils.BasePresenterTest;
-import rx.Observable;
+import io.reactivex.Observable;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

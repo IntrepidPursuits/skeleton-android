@@ -8,7 +8,7 @@ import io.intrepid.skeleton.base.PresenterConfiguration;
 import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
-import rx.schedulers.TestScheduler;
+import io.reactivex.schedulers.TestScheduler;
 
 @SuppressWarnings("WeakerAccess")
 public class TestPresenterConfiguration extends PresenterConfiguration {
