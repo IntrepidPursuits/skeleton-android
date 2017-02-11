@@ -1,10 +1,11 @@
-<resources>
-    <string name="common_ok">OK</string>
-    <string name="common_yes">Yes</string>
-    <string name="common_no">No</string>
-    <string name="common_cancel">Cancel</string>
-    <string name="common_delete">Delete</string>
-    <string name="common_remove">Remove</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="common_ok" tools:keep="@string/common_ok">OK</string>
+    <string name="common_yes" tools:keep="@string/common_yes">Yes</string>
+    <string name="common_no" tools:keep="@string/common_no">No</string>
+    <string name="common_cancel" tools:keep="@string/common_cancel">Cancel</string>
+    <string name="common_delete" tools:keep="@string/common_delete">Delete</string>
+    <string name="common_remove" tools:keep="@string/common_remove">Remove</string>
 
     <string name="app_name">Skeleton</string>
+    <string name="click">Click</string>
 </resources>

@@ -36,7 +36,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     /**
      * Override this method to do any additional view initialization (ex: setup RecycleView adapter)
      */
-    protected void onViewCreated(Bundle savedInstanceState) {
+    protected void onViewCreated(@SuppressWarnings("UnusedParameters") Bundle savedInstanceState) {
 
     }
 
@@ -44,6 +44,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     @CallSuper
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        //noinspection unchecked
         presenter.bindView(this);
     }
 
@@ -51,6 +52,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     @CallSuper
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //noinspection unchecked
         presenter.bindView(this);
     }
 
@@ -58,6 +60,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     @CallSuper
     public void onStart() {
         super.onStart();
+        //noinspection unchecked
         presenter.bindView(this);
     }
 
@@ -65,6 +68,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     @CallSuper
     public void onStop() {
         super.onStop();
+        //noinspection unchecked
         presenter.unbindView();
     }
 

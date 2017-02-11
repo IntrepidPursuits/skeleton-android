@@ -13,7 +13,7 @@ import timber.log.Timber;
 abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Timber.v("Lifecycle onCreate: " + this);
+        Timber.v("Lifecycle onCreate: %s", this);
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutResourceId());
@@ -23,49 +23,49 @@ abstract class BaseActivity extends AppCompatActivity {
     @Override
     @CallSuper
     protected void onNewIntent(Intent intent) {
-        Timber.v("Lifecycle onNewIntent: " + this);
+        Timber.v("Lifecycle onNewIntent: %s", this);
         super.onNewIntent(intent);
     }
 
     @Override
     @CallSuper
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Timber.v("Lifecycle onActivityResult: " + this);
+        Timber.v("Lifecycle onActivityResult: %s", this);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     @CallSuper
     protected void onStart() {
-        Timber.v("Lifecycle onStart: " + this);
+        Timber.v("Lifecycle onStart: %s", this);
         super.onStart();
     }
 
     @Override
     @CallSuper
     protected void onResume() {
-        Timber.v("Lifecycle onResume: " + this);
+        Timber.v("Lifecycle onResume: %s", this);
         super.onResume();
     }
 
     @Override
     @CallSuper
     protected void onPause() {
-        Timber.v("Lifecycle onPause: " + this);
+        Timber.v("Lifecycle onPause: %s", this);
         super.onPause();
     }
 
     @Override
     @CallSuper
     protected void onStop() {
-        Timber.v("Lifecycle onStop: " + this);
+        Timber.v("Lifecycle onStop: %s", this);
         super.onStop();
     }
 
     @Override
     @CallSuper
     protected void onDestroy() {
-        Timber.v("Lifecycle onDestroy: " + this);
+        Timber.v("Lifecycle onDestroy: %s", this);
         super.onDestroy();
     }
 

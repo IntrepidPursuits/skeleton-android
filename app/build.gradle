@@ -83,6 +83,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    lintOptions {
+        abortOnError false
+        lintConfig file('lint.xml')
+    }
 }
 
 dependencies {
@@ -93,7 +97,7 @@ dependencies {
     }
 
     // Support libraries
-    def supportVersion = "25.1.0";
+    def supportVersion = "25.1.1";
     compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
