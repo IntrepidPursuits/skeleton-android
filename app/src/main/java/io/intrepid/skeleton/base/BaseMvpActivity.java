@@ -20,11 +20,11 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
 
     protected abstract int getLayoutResourceId();
 
-    @Override
     /**
      * Override {@link #onViewCreated(Bundle)} to handle any logic that needs to occur right after inflating the view.
      * onViewCreated is called immediately after onCreateView
      */
+    @Override
     protected final void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PresenterConfiguration configuration = getSkeletonApplication().getPresenterConfiguration();
@@ -44,6 +44,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     @CallSuper
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        //noinspection unchecked
         presenter.bindView(this);
     }
 
@@ -51,6 +52,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     @CallSuper
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //noinspection unchecked
         presenter.bindView(this);
     }
 
@@ -58,6 +60,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.Presenter> extends 
     @CallSuper
     public void onStart() {
         super.onStart();
+        //noinspection unchecked
         presenter.bindView(this);
     }
 

@@ -24,14 +24,14 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
     @Override
     @CallSuper
     public void onAttach(Context context) {
-        Timber.v("Lifecycle onAttach: " + this + " to " + context);
+        Timber.v("Lifecycle onAttach: %s to %s", this, context);
         super.onAttach(context);
     }
 
     @Override
     @CallSuper
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Timber.v("Lifecycle onCreate: " + this);
+        Timber.v("Lifecycle onCreate: %s", this);
         super.onCreate(savedInstanceState);
         PresenterConfiguration configuration = getSkeletonApplication().getPresenterConfiguration();
         presenter = createPresenter(configuration);
@@ -45,7 +45,7 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
     public final View onCreateView(LayoutInflater inflater,
                                    @Nullable ViewGroup container,
                                    @Nullable Bundle savedInstanceState) {
-        Timber.v("Lifecycle onCreateView: " + this);
+        Timber.v("Lifecycle onCreateView: %s", this);
         View view = inflater.inflate(getLayoutResourceId(), container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
@@ -73,37 +73,39 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
     @Override
     @CallSuper
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Timber.v("Lifecycle onActivityResult: " + this);
+        Timber.v("Lifecycle onActivityResult: %s", this);
         super.onActivityResult(requestCode, resultCode, data);
+        //noinspection unchecked
         presenter.bindView(this);
     }
 
     @Override
     @CallSuper
     public void onStart() {
-        Timber.v("Lifecycle onStart: " + this);
+        Timber.v("Lifecycle onStart: %s", this);
         super.onStart();
+        //noinspection unchecked
         presenter.bindView(this);
     }
 
     @Override
     @CallSuper
     public void onResume() {
-        Timber.v("Lifecycle onResume: " + this);
+        Timber.v("Lifecycle onResume: %s", this);
         super.onResume();
     }
 
     @Override
     @CallSuper
     public void onPause() {
-        Timber.v("Lifecycle onPause: " + this);
+        Timber.v("Lifecycle onPause: %s", this);
         super.onPause();
     }
 
     @Override
     @CallSuper
     public void onStop() {
-        Timber.v("Lifecycle onStop: " + this);
+        Timber.v("Lifecycle onStop: %s", this);
         super.onStop();
         presenter.unbindView();
     }
@@ -111,7 +113,7 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
     @Override
     @CallSuper
     public void onDestroyView() {
-        Timber.v("Lifecycle onDestroyView: " + this);
+        Timber.v("Lifecycle onDestroyView: %s", this);
         super.onDestroyView();
         unbinder.unbind();
     }
@@ -119,14 +121,14 @@ public abstract class BaseFragment<T extends BaseContract.Presenter> extends Fra
     @Override
     @CallSuper
     public void onDestroy() {
-        Timber.v("Lifecycle onDestroy: " + this);
+        Timber.v("Lifecycle onDestroy: %s", this);
         super.onDestroy();
         presenter.onViewDestroyed();
     }
 
     @Override
     public void onDetach() {
-        Timber.v("Lifecycle onDetach: " + this + " from " + getContext());
+        Timber.v("Lifecycle onDetach: %s from %s", this, getContext());
         super.onDetach();
     }
 

@@ -1,5 +1,6 @@
 package io.intrepid.skeleton.screens.example2;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class Example2Fragment extends BaseFragment<Example2Contract.Presenter> i
         return new Example2Presenter(this, configuration);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void showCurrentIpAddress(String ip) {
         // This should be extracted to string resource in a real app, but we are inlining this for the
@@ -36,6 +38,7 @@ public class Example2Fragment extends BaseFragment<Example2Contract.Presenter> i
         currentIpView.setText("Your current Ip address is " + ip);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void showPreviousIpAddress(String ip) {
         previousIpView.setVisibility(View.VISIBLE);
