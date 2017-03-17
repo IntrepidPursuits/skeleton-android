@@ -15,9 +15,10 @@ public class TimberConfig {
                 tree = new Timber.DebugTree() {
                     @Override
                     protected void log(int priority, String tag, String message, Throwable t) {
-                        super.log(priority, tag, message, t);
                         if (priority >= Log.INFO) {
                             crashReporter.log(priority, tag, message);
+                        } else {
+                            super.log(priority, tag, message, t);
                         }
                     }
                 };
