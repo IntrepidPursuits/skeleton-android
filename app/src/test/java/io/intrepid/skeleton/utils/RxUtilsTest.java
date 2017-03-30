@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 public class RxUtilsTest {
 
     @Test
-    public void unsubscribeDisposable() throws Exception {
+    public void unsubscribeDisposable() {
         Disposable mockDisposable = mock(Disposable.class);
         RxUtils.unsubscribeDisposable(mockDisposable);
         verify(mockDisposable).dispose();
