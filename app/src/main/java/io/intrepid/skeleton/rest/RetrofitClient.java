@@ -12,7 +12,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class RetrofitClient {
+public final class RetrofitClient {
 
     // TODO: change this to a real endpoint
     private static final String BASE_URL = "https://api.ipify.org/";
@@ -20,7 +20,7 @@ public class RetrofitClient {
 
     private static RestApi instance;
 
-    public static RestApi getApi() {
+    public synchronized static RestApi getApi() {
         if (instance == null) {
             instance = createRestApi(BASE_URL);
         }

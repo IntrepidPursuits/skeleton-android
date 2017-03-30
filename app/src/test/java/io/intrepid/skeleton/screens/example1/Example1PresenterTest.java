@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import io.intrepid.skeleton.testutils.BasePresenterTest;
-import io.intrepid.skeleton.testutils.TestPresenterConfiguration;
 
 import static org.mockito.Mockito.verify;
 
@@ -16,11 +15,11 @@ public class Example1PresenterTest extends BasePresenterTest<Example1Presenter> 
 
     @Before
     public void setup() {
-        presenter = new Example1Presenter(mockView, TestPresenterConfiguration.createTestConfiguration());
+        presenter = new Example1Presenter(mockView, testConfiguration);
     }
 
     @Test
-    public void onButtonClick() throws Exception {
+    public void onButtonClick() {
         presenter.onButtonClick();
         verify(mockView).gotoExample2();
     }

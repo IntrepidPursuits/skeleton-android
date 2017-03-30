@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import timber.log.Timber;
+
 public class TestFileUtils {
     public static String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -12,12 +14,12 @@ public class TestFileUtils {
         try {
             String line = reader.readLine();
             while (line != null) {
-                sb.append(line).append("\n");
+                sb.append(line).append('\n');
                 line = reader.readLine();
             }
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Timber.e(e);
             return null;
         }
         return sb.toString();
