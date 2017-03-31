@@ -19,3 +19,7 @@ task pmd(type: Pmd) {
         }
     }
 }
+
+pmd {
+    toolVersion "5.5.1"
+}
