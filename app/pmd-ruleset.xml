@@ -10,7 +10,7 @@
     <exclude-pattern>.*/R.java</exclude-pattern>
     <exclude-pattern>.*/gen/.*</exclude-pattern>
 
-    <!-- List of rule sets with explanations https://pmd.github.io/pmd-5.5.1/pmd-java/rules/index.html -->
+    <!-- List of rule sets with explanations: https://pmd.github.io/pmd-5.5.1/pmd-java/rules/index.html -->
 
     <rule ref="rulesets/java/android.xml"/>
     <rule ref="rulesets/java/basic.xml">
@@ -25,7 +25,7 @@
         <exclude name="AvoidSynchronizedAtMethodLevel"/>
         <exclude name="TooFewBranchesForASwitchStatement"/>
         <exclude name="SwitchStmtsShouldHaveDefault"/>
-        <!--<exclude name=""/>-->
+        <exclude name="CompareObjectsWithEquals"/>
         <exclude name="UseUtilityClass"/>
         <exclude name="ConfusingTernary"/>
         <!--Often time these are used for Gson/Jackson-->
@@ -61,6 +61,9 @@
     </rule>
     <rule ref="rulesets/java/strings.xml"/>
     <rule ref="rulesets/java/typeresolution.xml"/>
-    <rule ref="rulesets/java/unnecessary.xml"/>
+    <rule ref="rulesets/java/unnecessary.xml">
+        <!--We sometimes add extra parentheses to make thing more readable-->
+        <exclude name="UselessParentheses"/>
+    </rule>
     <rule ref="rulesets/java/unusedcode.xml"/>
 </ruleset>
