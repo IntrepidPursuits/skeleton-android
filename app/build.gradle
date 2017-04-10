@@ -1,10 +1,13 @@
+plugins {
+    id "io.intrepid.static-analysis" version "1.0-alpha6"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'spoon'
 apply from: 'version.gradle'
 apply from: 'coverage.gradle'
-apply from: 'static-analysis.gradle'
 // Uncomment the following line after adding fabric.properties file
 //apply plugin: 'io.fabric'
 
