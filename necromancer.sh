@@ -8,7 +8,8 @@ oldApplicationCapitalizedName="Skeleton"
 oldDirectoryName="io/intrepid/skeleton"
 oldDirectoryPrefix="io/intrepid/"
 
-packageRegex="([a-z]+\.){1,3}([a-z]+)$"
+# We do not check for Java keywords... We should... but we don't. http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html
+packageRegex='^([a-z_][a-z_0-9]*\.)*([A-z_][A-z_0-9]+)$'
 
 downloadDirectory=./
 newPackageName=$oldPackageName
