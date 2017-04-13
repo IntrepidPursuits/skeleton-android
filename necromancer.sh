@@ -9,6 +9,7 @@ oldDirectoryName="io/intrepid/skeleton"
 oldDirectoryPrefix="io/intrepid/"
 cleanHistory=false
 autoCommit=true
+optionsFound=''
 
 # We do not check for Java keywords... We should... but we don't, we also enforce lowercase names. http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html
 packageRegex='^([a-z_][a-z_0-9]*\.)*([a-z_][a-z_0-9]+)$'
@@ -40,6 +41,7 @@ OPTIONAL:
 }
 
 while getopts "d:p:ca" opt; do
+    optionsFound="$opt:$optionsFound"
     case "$opt" in
     d)  downloadDirectory=$OPTARG
         ;;
@@ -57,6 +59,10 @@ done
 shift $((OPTIND-1))
 [ "$1" = "--" ] && shift
 
+if [[  "$optionsFound" != *d* ]] || [[ "$optionsFound" != *p*  ]]; then
+  print_help
+fi
+
 if [[ $newPackageName =~ $packageRegex ]]; then
     newApplicationName=${BASH_REMATCH[2]}
     newApplicationCapitalizedName="$(tr '[:lower:]' '[:upper:]' <<< ${newApplicationName:0:1})${newApplicationName:1}"
@@ -66,7 +72,7 @@ else
     exit
 fi
 
-git clone https://github.com/IntrepidPursuits/AndroidSkeleton.git $downloadDirectory/$newApplicationCapitalizedName
+git clone https://github.com/IntrepidPursuits/AndroidSkeleton.git $downloadDirectory/$newApplicationCapitalizedName || exit 1
 
 cd $downloadDirectory/$newApplicationCapitalizedName
 rm necromancer.sh
