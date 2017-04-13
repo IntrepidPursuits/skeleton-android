@@ -16,6 +16,29 @@ packageRegex='^([a-z_][a-z_0-9]*\.)*([a-z_][a-z_0-9]+)$'
 downloadDirectory=./
 newPackageName=$oldPackageName
 
+print_help() {
+  echo "Necromancer - Setup Script for IntrepidPursuits/AndroidSkeleton
+
+Command-Line Options
+
+REQUIRED:
+  d <path>        Set the container directory where your project will placed.
+                  A subfolder will be created at this point.
+  p <packageName> Set the Java base Package name and Android Identifier for
+                  your project.
+
+OPTIONAL:
+  c      Start with a clean history. By default the project created by this
+         script will have all the history of the Skeleton project included.
+  a      Don't auto-commit. By default the project will be automatically
+         comitted with all files added.
+
+  h or ? Displays this message.
+
+";
+  exit 1
+}
+
 while getopts "d:p:ca" opt; do
     case "$opt" in
     d)  downloadDirectory=$OPTARG
@@ -26,6 +49,8 @@ while getopts "d:p:ca" opt; do
         ;;
     a)  autoCommit=false
         ;;
+    h|?|\?) # h, or ? or unknown (\?)
+        print_help
         ;;
     esac
 done
