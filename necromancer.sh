@@ -44,8 +44,13 @@ if [ "$newPackageName" != "$oldPackageName" ]; then
 
     mv src/main/java/io/intrepid/skeleton/SkeletonApplication.java src/main/java/io/intrepid/skeleton/${newApplicationCapitalizedName}Application.java
 
+    # Not all Macs have LANG set. If they dont and its not C SED can error with 'sed: RE error: illegal byte sequence'.
+    #    Because -exec subshells... we need to export our environment... So store the one we came in with... Export 'C' then reset.
+    OLD_LANG=$LANG
+    export LANG=C
     find . -type f \( ! -iname "*.png" \) -exec sed -i '' "s/$oldPackageName/$newPackageName/g" {} \;
     find . -type f \( ! -iname "*.png" \) -exec sed -i '' "s/$oldApplicationCapitalizedName/$newApplicationCapitalizedName/g" {} \;
+    export LANG=$OLD_LANG
 
     mkdir temp
     declare -a srcDirs=("androidTest" "main" "test")
