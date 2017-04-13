@@ -7,6 +7,9 @@ oldPackageName="io.intrepid.skeleton"
 oldApplicationCapitalizedName="Skeleton"
 oldDirectoryName="io/intrepid/skeleton"
 oldDirectoryPrefix="io/intrepid/"
+cleanHistory=false
+autoCommit=true
+optionsFound=''
 
 # We do not check for Java keywords... We should... but we don't, we also enforce lowercase names. http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html
 packageRegex='^([a-z_][a-z_0-9]*\.)*([a-z_][a-z_0-9]+)$'
@@ -14,16 +17,51 @@ packageRegex='^([a-z_][a-z_0-9]*\.)*([a-z_][a-z_0-9]+)$'
 downloadDirectory=./
 newPackageName=$oldPackageName
 
-while getopts "d:p:" opt; do
+print_help() {
+  echo "Necromancer - Setup Script for IntrepidPursuits/AndroidSkeleton
+
+Command-Line Options
+
+REQUIRED:
+  d <path>        Set the container directory where your project will placed.
+                  A subfolder will be created at this point.
+  p <packageName> Set the Java base Package name and Android Identifier for
+                  your project.
+
+OPTIONAL:
+  c      Start with a clean history. By default the project created by this
+         script will have all the history of the Skeleton project included.
+  a      Don't auto-commit. By default the project will be automatically
+         comitted with all files added.
+
+  h or ? Displays this message.
+
+";
+  exit 1
+}
+
+while getopts "d:p:ca" opt; do
+    optionsFound="$opt:$optionsFound"
     case "$opt" in
     d)  downloadDirectory=$OPTARG
         ;;
     p)  newPackageName=$OPTARG
         ;;
+    c)  cleanHistory=true
+        ;;
+    a)  autoCommit=false
+        ;;
+    h|?|\?) # h, or ? or unknown (\?)
+        print_help
+        ;;
     esac
 done
 shift $((OPTIND-1))
 [ "$1" = "--" ] && shift
+
+if [[  "$optionsFound" != *d* ]] || [[ "$optionsFound" != *p*  ]]; then
+  print_help
+fi
 
 if [[ $newPackageName =~ $packageRegex ]]; then
     newApplicationName=${BASH_REMATCH[2]}
@@ -34,10 +72,16 @@ else
     exit
 fi
 
-git clone https://github.com/IntrepidPursuits/AndroidSkeleton.git $downloadDirectory/$newApplicationCapitalizedName
+git clone https://github.com/IntrepidPursuits/AndroidSkeleton.git $downloadDirectory/$newApplicationCapitalizedName || exit 1
 
 cd $downloadDirectory/$newApplicationCapitalizedName
 rm necromancer.sh
+git remote remove origin
+
+if [ "$cleanHistory" = true ] ; then
+  rm -rf .git
+  git init
+fi
 
 if [ "$newPackageName" != "$oldPackageName" ]; then
     cd app
@@ -65,5 +109,8 @@ if [ "$newPackageName" != "$oldPackageName" ]; then
 fi
 
 git add --all
-git commit -m "Initial import from Skeleton"
-git remote remove origin
+git add --force .gitignore
+
+if [ "$autoCommit" = true ] ; then
+  git commit -m "Initial import from Skeleton"
+fi
