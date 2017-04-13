@@ -30,7 +30,7 @@ if [[ $newPackageName =~ $packageRegex ]]; then
     newApplicationCapitalizedName="$(tr '[:lower:]' '[:upper:]' <<< ${newApplicationName:0:1})${newApplicationName:1}"
     newDirectoryName=${newPackageName//\./\/}
 else
-    echo "The package name should be in the for of x.y.z";
+    echo "The package name should be in the form of x.y.z. Package parts cannot start with an integer or end with a full stop ('.').";
     exit
 fi
 
