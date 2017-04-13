@@ -8,6 +8,7 @@ oldApplicationCapitalizedName="Skeleton"
 oldDirectoryName="io/intrepid/skeleton"
 oldDirectoryPrefix="io/intrepid/"
 cleanHistory=false
+autoCommit=true
 
 # We do not check for Java keywords... We should... but we don't, we also enforce lowercase names. http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html
 packageRegex='^([a-z_][a-z_0-9]*\.)*([a-z_][a-z_0-9]+)$'
@@ -15,13 +16,15 @@ packageRegex='^([a-z_][a-z_0-9]*\.)*([a-z_][a-z_0-9]+)$'
 downloadDirectory=./
 newPackageName=$oldPackageName
 
-while getopts "d:p:c" opt; do
+while getopts "d:p:ca" opt; do
     case "$opt" in
     d)  downloadDirectory=$OPTARG
         ;;
     p)  newPackageName=$OPTARG
         ;;
     c)  cleanHistory=true
+        ;;
+    a)  autoCommit=false
         ;;
         ;;
     esac
@@ -75,5 +78,8 @@ if [ "$newPackageName" != "$oldPackageName" ]; then
 fi
 
 git add --all
-git commit -m "Initial import from Skeleton"
 git add --force .gitignore
+
+if [ "$autoCommit" = true ] ; then
+  git commit -m "Initial import from Skeleton"
+fi
