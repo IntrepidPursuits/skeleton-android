@@ -8,7 +8,7 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import io.fabric.sdk.android.Fabric;
 import io.intrepid.skeleton.BuildConfig;
 
-public class CrashlyticsReporter implements CrashReporter {
+public final class CrashlyticsReporter implements CrashReporter {
 
     private static CrashlyticsReporter instance;
 

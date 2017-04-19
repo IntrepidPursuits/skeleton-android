@@ -41,6 +41,7 @@ public class ExampleSmokeTest extends BaseUiTest {
     }
 
     @Test
+    @SuppressWarnings("PMD.AvoidUsingHardCodedIP")
     public void smokeTest() {
         activityTestRule.launchActivity(null);
         mockServerRule.enqueueResponse(io.intrepid.skeleton.debug.test.R.raw.mock_ip);

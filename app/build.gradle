@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'spoon'
+apply plugin: "io.intrepid.static-analysis"
 apply from: 'version.gradle'
 apply from: 'coverage.gradle'
 // Uncomment the following line after adding fabric.properties file
