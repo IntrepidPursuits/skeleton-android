@@ -18,7 +18,7 @@ downloadDirectory=./
 newPackageName=$oldPackageName
 
 print_help() {
-  echo "Necromancer - Setup Script for IntrepidPursuits/AndroidSkeleton
+  echo "Necromancer - Setup Script for IntrepidPursuits/skeleton-android
 
 Command-Line Options
 
@@ -72,7 +72,7 @@ else
     exit
 fi
 
-git clone https://github.com/IntrepidPursuits/AndroidSkeleton.git $downloadDirectory/$newApplicationCapitalizedName || exit 1
+git clone https://github.com/IntrepidPursuits/skeleton-android.git $downloadDirectory/$newApplicationCapitalizedName || exit 1
 
 cd $downloadDirectory/$newApplicationCapitalizedName
 rm necromancer.sh
