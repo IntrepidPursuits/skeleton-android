@@ -1,7 +1,7 @@
 # Skeleton
 
-[![Build Status](https://ci.intrepid.io/buildStatus/icon?job=skeleton-android)](https://ci.intrepid.io/job/skeleton-android/)
-[![Coverage](http://ci.intrepid.io:9913/jenkins/cobertura/skeleton-android/)](https://ci.intrepid.io/job/skeleton-android/cobertura/)
+[![Build Status](https://ci.intrepid.io/buildStatus/icon?job=Android/android-projects/skeleton-android)](https://ci.intrepid.io/job/Android/job/android-projects/job/skeleton-android/)
+[![Coverage](http://ci.intrepid.io:9913/jenkins/cobertura/Android/job/android-projects/job/skeleton-android/)](https://ci.intrepid.io/job/Android/job/android-projects/job/skeleton-android/cobertura/)
 
 The starting point for Android apps at Intrepid. An equivalent Kotlin implementation can be found [here](https://github.com/IntrepidPursuits/skotlinton-android).
 
