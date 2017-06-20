@@ -84,10 +84,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    lintOptions {
-        lintConfig file('lint.xml')
-    }
 }
 
 dependencies {
@@ -105,7 +101,7 @@ dependencies {
     compile "com.android.support:design:$supportVersion"
 
     // Google play services
-    def googlePlayVersion = "10.2.6";
+    def googlePlayVersion = "11.0.0";
     compile "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
