@@ -20,7 +20,7 @@ ext.getLocalProperty = { propertyName ->
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "io.intrepid.skeleton"
@@ -80,6 +80,10 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -94,14 +98,14 @@ dependencies {
     }
 
     // Support libraries
-    def supportVersion = "25.3.0";
+    def supportVersion = "25.3.1";
     compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
 
     // Google play services
-    def googlePlayVersion = "10.2.0";
+    def googlePlayVersion = "11.0.0";
     compile "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
