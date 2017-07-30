@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Skeleton Debug</string>
+    <string name="test_unused"></string>
 </resources>
