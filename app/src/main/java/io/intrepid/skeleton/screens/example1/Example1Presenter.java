@@ -16,4 +16,16 @@ class Example1Presenter extends BasePresenter<Example1Contract.View> implements 
     public void onButtonClick() {
         view.gotoExample2();
     }
+
+    public void lintWarningTest(int number) {
+        int testLint = 0;
+        switch (number) {
+            case 1:
+                testLint = testLint + 1;
+            case 2:
+                testLint = testLint + 1;
+            default:
+                testLint = testLint + 1;
+        }
+    }
 }
