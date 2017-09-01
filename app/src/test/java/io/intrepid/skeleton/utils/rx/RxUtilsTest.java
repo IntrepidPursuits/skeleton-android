@@ -1,4 +1,4 @@
-package io.intrepid.skeleton.utils;
+package io.intrepid.skeleton.utils.rx;
 
 import org.junit.Test;
 

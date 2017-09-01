@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import io.intrepid.skeleton.logging.CrashReporter;
 import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
-import io.reactivex.ObservableTransformer;
+import io.intrepid.skeleton.utils.rx.SchedulerTransformer;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -79,7 +79,7 @@ public abstract class BasePresenter<T extends BaseContract.View> implements Base
 
     }
 
-    protected <R> ObservableTransformer<R, R> subscribeOnIoObserveOnUi() {
-        return observable -> observable.subscribeOn(ioScheduler).observeOn(uiScheduler);
+    protected <R> SchedulerTransformer<R> subscribeOnIoObserveOnUi() {
+        return new SchedulerTransformer<>(ioScheduler, uiScheduler);
     }
 }

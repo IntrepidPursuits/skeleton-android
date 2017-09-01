@@ -1,4 +1,4 @@
-package io.intrepid.skeleton.utils;
+package io.intrepid.skeleton.utils.rx;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

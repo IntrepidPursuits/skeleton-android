@@ -6,7 +6,7 @@ import org.mockito.Mock;
 
 import io.intrepid.skeleton.models.IpModel;
 import io.intrepid.skeleton.testutils.BasePresenterTest;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,7 +29,7 @@ public class Example2PresenterTest extends BasePresenterTest<Example2Presenter> 
 
         IpModel mockIpModel = new IpModel();
         mockIpModel.ip = mockIp;
-        when(mockRestApi.getMyIp()).thenReturn(Observable.just(mockIpModel));
+        when(mockRestApi.getMyIp()).thenReturn(Single.just(mockIpModel));
         when(mockUserSettings.getLastIp()).thenReturn(mockPreviousIp);
 
         presenter.onViewCreated();
@@ -41,7 +41,7 @@ public class Example2PresenterTest extends BasePresenterTest<Example2Presenter> 
 
     @Test
     public void onViewCreated_NoPreviousIp() {
-        when(mockRestApi.getMyIp()).thenReturn(Observable.empty());
+        when(mockRestApi.getMyIp()).thenReturn(Single.error(new Throwable()));
         when(mockUserSettings.getLastIp()).thenReturn(null);
 
         presenter.onViewCreated();

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import io.intrepid.skeleton.base.BasePresenter;
 import io.intrepid.skeleton.base.PresenterConfiguration;
-import io.intrepid.skeleton.utils.RxUtils;
+import io.intrepid.skeleton.utils.rx.RxUtils;
 import io.reactivex.disposables.Disposable;
 
 class Example2Presenter extends BasePresenter<Example2Contract.View> implements Example2Contract.Presenter {
