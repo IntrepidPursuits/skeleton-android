@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'spoon'
 apply plugin: "io.intrepid.static-analysis"
 apply from: 'version.gradle'
@@ -19,13 +18,13 @@ ext.getLocalProperty = { propertyName ->
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "io.intrepid.skeleton"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -98,43 +97,43 @@ dependencies {
     }
 
     // Support libraries
-    def supportVersion = "25.3.1";
+    def supportVersion = "26.1.0";
     compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
 
     // Google play services
-    def googlePlayVersion = "11.0.0";
+    def googlePlayVersion = "11.0.4";
     compile "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
-    compile "io.reactivex.rxjava2:rxjava:2.0.7"
+    compile "io.reactivex.rxjava2:rxjava:2.1.5"
     compile "io.reactivex.rxjava2:rxandroid:2.0.1"
 
     // Jake Wharton/Square
-    def retrofitVersion = "2.2.0";
+    def retrofitVersion = "2.3.0";
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    compile "com.google.code.gson:gson:2.8.0"
+    compile "com.google.code.gson:gson:2.8.2"
 
-    def okhttpVersion = "3.6.0"
+    def okhttpVersion = "3.9.0"
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
-    def butterKnifeVersion = "8.5.1"
+    def butterKnifeVersion = "8.8.1"
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
-    apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     // Other
-    compile "io.intrepid.commonutils:commonutils:0.2.0"
+    compile "io.intrepid.commonutils:commonutils:0.2.2"
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
 
     // LeakCanary
-    def leakCanaryVersion = "1.5"
+    def leakCanaryVersion = "1.5.4"
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     qaCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
@@ -142,7 +141,7 @@ dependencies {
 
     // Common test dependencies
     def junitLib = "junit:junit:4.12"
-    def mockitoVersion = "2.7.17"
+    def mockitoVersion = "2.10.0"
     def mockitoLib = "org.mockito:mockito-core:$mockitoVersion"
     def supportAnnotationLib = "com.android.support:support-annotations:$supportVersion"
 
@@ -157,10 +156,10 @@ dependencies {
     androidTestCompile supportAnnotationLib
     androidTestCompile "org.mockito:mockito-android:$mockitoVersion"
 
-    def androidTestVersion = "0.5"
+    def androidTestVersion = "1.0.1"
     androidTestCompile "com.android.support.test:runner:$androidTestVersion"
     androidTestCompile "com.android.support.test:rules:$androidTestVersion"
-    def espressoVersion = "2.2.2"
+    def espressoVersion = "3.0.1"
     androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoVersion"
     androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
     androidTestCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
