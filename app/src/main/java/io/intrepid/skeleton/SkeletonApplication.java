@@ -19,13 +19,17 @@ public class SkeletonApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        LeakCanary.install(this);
+        setupLeakCanary();
 
         CrashlyticsReporter.init(this);
 
         TimberConfig.init(CrashlyticsReporter.getInstance());
 
         initCalligraphy();
+    }
+
+    protected void setupLeakCanary() {
+        LeakCanary.install(this);
     }
 
     private void initCalligraphy() {

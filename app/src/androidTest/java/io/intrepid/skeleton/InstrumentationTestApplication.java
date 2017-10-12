@@ -28,6 +28,11 @@ public class InstrumentationTestApplication extends SkeletonApplication {
                 Mockito.mock(CrashReporter.class));
     }
 
+    @Override
+    protected void setupLeakCanary() {
+        // noop, we don't want LeakCanary in UI tests
+    }
+
     public static void overrideRestApi(RestApi restApi) {
         restApiOverride = restApi;
     }
