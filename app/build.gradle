@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'spoon'
 apply plugin: "io.intrepid.static-analysis"
 apply from: 'version.gradle'
@@ -40,7 +39,7 @@ android {
         }
 
         release {
-            def fileName = getLocalProperty("signing_file");
+            def fileName = getLocalProperty("signing_file")
             if (!fileName.isEmpty()) {
                 storeFile file(fileName)
                 storePassword getLocalProperty("signing_password")
@@ -90,54 +89,54 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
-        transitive = true;
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
     }
 
     // Support libraries
-    def supportVersion = "26.1.0";
-    compile "com.android.support:support-v4:$supportVersion"
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:recyclerview-v7:$supportVersion"
-    compile "com.android.support:design:$supportVersion"
+    def supportVersion = "26.1.0"
+    implementation "com.android.support:support-v4:$supportVersion"
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
 
     // Google play services
-    def googlePlayVersion = "11.0.4";
-    compile "com.google.android.gms:play-services-base:$googlePlayVersion"
+    def googlePlayVersion = "11.4.2"
+    implementation "com.google.android.gms:play-services-base:$googlePlayVersion"
 
     // Rx
-    compile "io.reactivex.rxjava2:rxjava:2.1.5"
-    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+    implementation "io.reactivex.rxjava2:rxjava:2.1.5"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
 
     // Jake Wharton/Square
-    def retrofitVersion = "2.3.0";
-    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    compile "com.google.code.gson:gson:2.8.2"
+    def retrofitVersion = "2.3.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.google.code.gson:gson:2.8.2"
 
     def okhttpVersion = "3.9.0"
-    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
     def butterKnifeVersion = "8.8.1"
-    compile "com.jakewharton:butterknife:$butterKnifeVersion"
+    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
-    compile 'com.jakewharton.timber:timber:4.5.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.jakewharton.timber:timber:4.5.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     // Other
-    compile "io.intrepid.commonutils:commonutils:0.2.2"
-    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    implementation "io.intrepid.commonutils:commonutils:0.2.2"
+    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
 
     // LeakCanary
     def leakCanaryVersion = "1.5.4"
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    qaCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    qaImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
 
     // Common test dependencies
     def junitLib = "junit:junit:4.12"
@@ -146,23 +145,23 @@ dependencies {
     def supportAnnotationLib = "com.android.support:support-annotations:$supportVersion"
 
     // Unit tests
-    testCompile junitLib
-    testCompile mockitoLib
-    testCompile supportAnnotationLib
+    testImplementation junitLib
+    testImplementation mockitoLib
+    testImplementation supportAnnotationLib
 
     // UI tests
-    androidTestCompile junitLib
-    androidTestCompile mockitoLib
-    androidTestCompile supportAnnotationLib
-    androidTestCompile "org.mockito:mockito-android:$mockitoVersion"
+    androidTestImplementation junitLib
+    androidTestImplementation mockitoLib
+    androidTestImplementation supportAnnotationLib
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
 
     def androidTestVersion = "1.0.1"
-    androidTestCompile "com.android.support.test:runner:$androidTestVersion"
-    androidTestCompile "com.android.support.test:rules:$androidTestVersion"
+    androidTestImplementation "com.android.support.test:runner:$androidTestVersion"
+    androidTestImplementation "com.android.support.test:rules:$androidTestVersion"
     def espressoVersion = "3.0.1"
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
-    androidTestCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
 }
 
 spoon {
