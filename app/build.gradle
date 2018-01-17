@@ -129,7 +129,6 @@ dependencies {
 
     // Other
     implementation "io.intrepid.commonutils:commonutils:0.2.3"
-    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     // LeakCanary
     def leakCanaryVersion = "1.5.4"

@@ -1,6 +1,5 @@
 package io.intrepid.skeleton.base;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -10,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import io.intrepid.skeleton.SkeletonApplication;
 import timber.log.Timber;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 abstract class BaseActivity extends AppCompatActivity {
     @Override
@@ -69,12 +67,6 @@ abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         Timber.v("Lifecycle onDestroy: %s", this);
         super.onDestroy();
-    }
-
-    @Override
-    @CallSuper
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     protected abstract int getLayoutResourceId();
