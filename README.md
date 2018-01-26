@@ -101,7 +101,6 @@ The app uses the popular MVP architecture to allow for separation of logic and e
 - Retrofit/OkHttp (simplifies network requests)
 - Timber (better logging tool)
 - Picasso (simplifies image loading)
-- Calligraphy (easier font configuration)
 - LeakCanary (helps catch memory leaks)
 - Crashlytics (reports crashes)
 - Mockito (mocks out classes for tests)
