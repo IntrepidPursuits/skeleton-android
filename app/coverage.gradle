@@ -23,7 +23,7 @@ def coverageClassDirs = fileTree(
 )
 
 def unitTestCoverageData = "${buildDir}/jacoco/test${buildVariant}UnitTest.exec"
-def instrumentationTestCoverageData = "${buildDir}/spoon/${buildVariantDirectory}/coverage/merged-coverage.ec"
+def instrumentationTestCoverageData = "${buildDir}/spoon-output/${buildVariantDirectory}/coverage/merged-coverage.ec"
 
 // testCoverageEnabled messes up debugging/etc, so we want it disabled most of times.
 // unit test coverage reports seems to work fine even with the flag disabled, but the
