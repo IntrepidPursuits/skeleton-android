@@ -44,7 +44,7 @@ task testCoverage(type: JacocoReport, dependsOn: ["test${buildVariant}UnitTest",
 
     reports {
         xml.enabled true
-        xml.destination "${buildDir}/reports/jacoco/testCoverage/coverage.xml"
+        xml.destination "${buildDir}/reports/jacoco/testCoverage/jacoco.xml"
     }
 }
 
@@ -70,7 +70,7 @@ task unitTestCoverage(type: JacocoReport, dependsOn: "test${buildVariant}UnitTes
 
     reports {
         xml.enabled true
-        xml.destination "${buildDir}/reports/jacoco/unitTestCoverage/coverage.xml"
+        xml.destination "${buildDir}/reports/jacoco/unitTestCoverage/jacoco.xml"
     }
 }
 
@@ -87,7 +87,7 @@ task instrumentationTestCoverage(type: JacocoReport, dependsOn: "spoon${buildVar
 
     reports {
         xml.enabled true
-        xml.destination "${buildDir}/reports/jacoco/instrumentationTestCoverage/coverage.xml"
+        xml.destination "${buildDir}/reports/jacoco/instrumentationTestCoverage/jacoco.xml"
     }
 }
 
