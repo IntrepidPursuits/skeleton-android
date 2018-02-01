@@ -4,11 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import io.intrepid.skeleton.testutils.BasePresenterTest;
+import io.intrepid.skeleton.testutils.PresenterTestBase;
 
 import static org.mockito.Mockito.verify;
 
-public class Example1PresenterTest extends BasePresenterTest<Example1Presenter> {
+public class Example1PresenterTest extends PresenterTestBase<Example1Presenter> {
 
     @Mock
     Example1Contract.View mockView;
