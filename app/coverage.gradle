@@ -23,7 +23,7 @@ def coverageClassDirs = fileTree(
 )
 
 def unitTestCoverageData = "${buildDir}/jacoco/test${buildVariant}UnitTest.exec"
-def instrumentationTestCoverageData = "${buildDir}/spoon/${buildVariantDirectory}/coverage/merged-coverage.ec"
+def instrumentationTestCoverageData = "${buildDir}/spoon-output/${buildVariantDirectory}/coverage/merged-coverage.ec"
 
 // testCoverageEnabled messes up debugging/etc, so we want it disabled most of times.
 // unit test coverage reports seems to work fine even with the flag disabled, but the
@@ -44,7 +44,7 @@ task testCoverage(type: JacocoReport, dependsOn: ["test${buildVariant}UnitTest",
 
     reports {
         xml.enabled true
-        xml.destination "${buildDir}/reports/jacoco/testCoverage/coverage.xml"
+        xml.destination "${buildDir}/reports/jacoco/testCoverage/jacoco.xml"
     }
 }
 
@@ -54,11 +54,8 @@ task unitTestCoverage(type: JacocoReport, dependsOn: "test${buildVariant}UnitTes
     sourceDirectories = coverageSourceDirs
     classDirectories = fileTree(
             dir: "${buildDir}/intermediates/classes/${buildVariantDirectory}",
-            includes: ['**/*Presenter*',
-                       '**/utils/*'
-                       // Add any additional testable classes here
-            ],
-            excludes: ['**/*Activity.class',
+            excludes: [*coverageClassDirs.excludes.asList(),
+                       '**/*Activity.class',
                        '**/*Fragment.class',
                        '**/*Service.class',
                        '**/*Application.class'
@@ -73,7 +70,7 @@ task unitTestCoverage(type: JacocoReport, dependsOn: "test${buildVariant}UnitTes
 
     reports {
         xml.enabled true
-        xml.destination "${buildDir}/reports/jacoco/unitTestCoverage/coverage.xml"
+        xml.destination "${buildDir}/reports/jacoco/unitTestCoverage/jacoco.xml"
     }
 }
 
@@ -90,7 +87,7 @@ task instrumentationTestCoverage(type: JacocoReport, dependsOn: "spoon${buildVar
 
     reports {
         xml.enabled true
-        xml.destination "${buildDir}/reports/jacoco/instrumentationTestCoverage/coverage.xml"
+        xml.destination "${buildDir}/reports/jacoco/instrumentationTestCoverage/jacoco.xml"
     }
 }
 
