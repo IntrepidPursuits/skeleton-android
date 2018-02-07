@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -21,17 +22,11 @@ public class BasePresenterTest extends PresenterTestBase<BasePresenter<BaseContr
     @Mock
     private BaseContract.View view;
 
-    @Mock
-    private Runnable onBind;
-
-    @Mock
-    private Runnable onUnbind;
-
     private Disposable disposable;
 
     @Before
     public void setUp() {
-        presenter = new TestPresenter(view, testConfiguration);
+        presenter = spy(new TestPresenter(view, testConfiguration));
     }
 
     @Test
@@ -39,7 +34,7 @@ public class BasePresenterTest extends PresenterTestBase<BasePresenter<BaseContr
         presenter.bindView(view);
         presenter.bindView(view);
         assertEquals(view, presenter.view);
-        verify(onBind, times(1)).run();
+        verify(presenter, times(1)).onViewBound();
     }
 
     @Test
@@ -47,13 +42,13 @@ public class BasePresenterTest extends PresenterTestBase<BasePresenter<BaseContr
         presenter.bindView(view);
         presenter.unbindView();
         presenter.unbindView();
-        verify(onUnbind, times(1)).run();
+        verify(presenter, times(1)).onViewUnbound();
     }
 
     @Test
     public void unbind_notBeforeBind() throws Exception {
         presenter.unbindView();
-        verify(onUnbind, never()).run();
+        verify(presenter, never()).onViewUnbound();
     }
 
     @Test
@@ -74,14 +69,8 @@ public class BasePresenterTest extends PresenterTestBase<BasePresenter<BaseContr
 
         @Override
         protected void onViewBound() {
-            onBind.run();
             disposable = Observable.never().subscribe();
             disposables.add(disposable);
-        }
-
-        @Override
-        protected void onViewUnbound() {
-            onUnbind.run();
         }
     }
 
