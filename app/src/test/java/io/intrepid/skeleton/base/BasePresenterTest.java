@@ -44,13 +44,16 @@ public class BasePresenterTest extends PresenterTestBase<BasePresenter<BaseContr
 
     @Test
     public void unbind_onlyOnce() throws Exception {
-        presenter.unbindView();
-        verify(onUnbind, never()).run();
-
         presenter.bindView(view);
         presenter.unbindView();
         presenter.unbindView();
         verify(onUnbind, times(1)).run();
+    }
+
+    @Test
+    public void unbind_notBeforeBind() throws Exception {
+        presenter.unbindView();
+        verify(onUnbind, never()).run();
     }
 
     @Test
