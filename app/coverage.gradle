@@ -5,9 +5,9 @@ jacoco {
 }
 
 // change the buildType and productFlavor fields here if the project uses different build variant for testing
-def buildType = "debug";
-def productFlavor = "";
-def buildVariant = "${productFlavor.capitalize()}${buildType.capitalize()}";
+def buildType = "debug"
+def productFlavor = ""
+def buildVariant = "${productFlavor.capitalize()}${buildType.capitalize()}"
 def buildVariantDirectory = "${productFlavor}/${buildType}"
 
 def coverageSourceDirs = files(['src/main/java'])
@@ -56,9 +56,13 @@ task unitTestCoverage(type: JacocoReport, dependsOn: "test${buildVariant}UnitTes
             dir: "${buildDir}/intermediates/classes/${buildVariantDirectory}",
             excludes: [*coverageClassDirs.excludes.asList(),
                        '**/*Activity.class',
+                       '**/*Activity$*.class',
                        '**/*Fragment.class',
+                       '**/*Fragment$*.class',
                        '**/*Service.class',
-                       '**/*Application.class'
+                       '**/*Service$*.class',
+                       '**/*Application.class',
+                       '**/*Application$*.class'
             ]
     )
     executionData = files("${buildDir}/jacoco/test${buildVariant}UnitTest.exec")
