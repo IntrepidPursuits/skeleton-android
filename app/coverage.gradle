@@ -70,7 +70,7 @@ task unitTestCoverage(type: JacocoReport, dependsOn: "test${buildVariant}UnitTes
                        '**/*ViewHolder.class',
                        '**/*ViewHolder$*.class',
                        '**/*Animation.class',
-                       '**/*Animation*.class'
+                       '**/*Animation$*.class'
             ]
     )
     executionData = files("${buildDir}/jacoco/test${buildVariant}UnitTest.exec")
