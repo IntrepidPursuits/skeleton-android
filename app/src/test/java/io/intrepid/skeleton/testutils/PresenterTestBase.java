@@ -11,7 +11,7 @@ import io.intrepid.skeleton.rest.RestApi;
 import io.intrepid.skeleton.settings.UserSettings;
 import io.reactivex.schedulers.TestScheduler;
 
-public class BasePresenterTest<P extends BasePresenter> {
+public class PresenterTestBase<P extends BasePresenter> {
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 

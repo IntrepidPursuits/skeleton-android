@@ -5,13 +5,13 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import io.intrepid.skeleton.models.IpModel;
-import io.intrepid.skeleton.testutils.BasePresenterTest;
+import io.intrepid.skeleton.testutils.PresenterTestBase;
 import io.reactivex.Single;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class Example2PresenterTest extends BasePresenterTest<Example2Presenter> {
+public class Example2PresenterTest extends PresenterTestBase<Example2Presenter> {
 
     @Mock
     Example2Contract.View mockView;
